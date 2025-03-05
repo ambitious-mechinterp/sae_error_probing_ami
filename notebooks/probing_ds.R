@@ -1,6 +1,6 @@
 #Probing data analysis clean
 
-setwd("~/Library/CloudStorage/OneDrive-Personal/Coding/AISC/SAE_Error_probes")
+setwd("~/OneDrive/Coding/AISC/SAE_error_probing_AMI")
 
 if (!require(tidyverse)) install.packages("tidyverse"); library(tidyverse)
 if (!require(magrittr)) install.packages("magrittr"); library(magrittr)
@@ -30,7 +30,7 @@ custom_colors <- c("#2ECC71", "#A3E635", "#F4D03F", "#F39C12", "#E74C3C", "#C039
 
 
 
-probe_summarizer <- function(probe_name, some_probes){
+probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
   # Renaming the columns to replace spaces with underscores
   colnames(some_probes) <- gsub(" ", "_", colnames(some_probes))
   
@@ -39,7 +39,9 @@ probe_summarizer <- function(probe_name, some_probes){
     summarize(mean_test_accuracy = mean(`Test_Accuracy`), 
               se_test_accuracy = sd(`Test_Accuracy`)/sqrt(n()),
               mean_test_loss = mean(`Test_Loss`), 
-              se_test_loss = sd(`Test_Loss`)/sqrt(n())) %>% ungroup()
+              se_test_loss = sd(`Test_Loss`)/sqrt(n()),
+              mean_test_ROC = mean(Test_ROC_AUC),
+              se_test_ROC = sd(Test_ROC_AUC)/sqrt(n())) %>% ungroup()
   
   
   probe_summary %<>% mutate(graph_labels = c(
@@ -58,7 +60,9 @@ probe_summarizer <- function(probe_name, some_probes){
                       ymax = mean_test_accuracy + 1.96*se_test_accuracy),
                   width = 0.1)+
     scale_y_continuous(labels = scales::percent)
-  ggsave(str_c("R plots/", probe_name, "_oos_accuracy.png"), width = 6, height = 4, scale = 1.2)
+  if(save_fig){
+    ggsave(str_c("reports/figures/", probe_name, "_oos_accuracy.png"), width = 6, height = 4, scale = 1.2)
+  }
   
   
   ggplot(probe_summary, aes(x = graph_labels, 
@@ -71,8 +75,10 @@ probe_summarizer <- function(probe_name, some_probes){
                       ymax = mean_test_loss + 1.96*se_test_loss),
                   width = 0.1)+
     scale_y_continuous()
-  ggsave(str_c("R plots/", probe_name, "_oos_loss.png"), width = 6, height = 4, scale = 1.2)
-  
+  if(save_fig){
+    ggsave(str_c("reports/figures/", probe_name, "_oos_loss.png"), width = 6, height = 4, scale = 1.2)
+  }
+    
   print(modelsummary(feols(Test_Loss ~ Feature_Type | as.factor(Seed), data = some_probes, vcov = ~Seed),
                      fmt = "%.3f",        # 3 decimal places
                      stars = TRUE,title = str_c(probe_name,": Test loss mean differences Layer 19"),           # Show confidence intervals instead of std errors
@@ -120,7 +126,7 @@ pairwise_performance <- function(some_probes,n_sims = 100){
 colnames(basketball) <- gsub(" ", "_", colnames(basketball))
 
 
-basketball %>% select(Seed, Feature_Type, Test_Loss, Test_Accuracy) %>% 
+headline_probes %>% select(Seed, Feature_Type, Test_Loss, Test_Accuracy) %>% 
   pivot_wider(id_cols = Seed, names_from = Feature_Type, 
               values_from = c( Test_Loss, Test_Accuracy)) %>%
   mutate(error_beats_input_loss = (Test_Loss_sae_diff - Test_Loss_sae_input) <0 ,
@@ -129,9 +135,94 @@ basketball %>% select(Seed, Feature_Type, Test_Loss, Test_Accuracy) %>%
          error_beats_recon_accuracy = (Test_Accuracy_sae_diff - Test_Accuracy_sae_recons)>0,) %>%
   skim()
 
+headline_probes %>% select(Seed, Feature_Type, Test_Loss, Test_ROC_AUC) %>% 
+  pivot_wider(id_cols = Seed, names_from = Feature_Type, 
+              values_from = c( Test_Loss, Test_ROC_AUC)) %>%
+  mutate(error_beats_input_loss = (Test_Loss_sae_diff - Test_Loss_sae_input) <0 ,
+         error_beats_recon_loss = (Test_Loss_sae_diff - Test_Loss_sae_recons)<0,
+         error_beats_input_auc = (Test_ROC_AUC_sae_diff - Test_ROC_AUC_sae_input) >0 ,
+         error_beats_recon_auc = (Test_ROC_AUC_sae_diff - Test_ROC_AUC_sae_recons)>0,) %>%
+  skim()
+
+
 truth_probes %<>% mutate(error_beats_input = )
 
 #Data summaries
+
+#load the 
+
+df <- read_csv("results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_ath_basketball.csv")
+df_sum <- probe_summarizer('Llama 3.1 Athelete Plays Basketball Probe',df)
+
+
+truth_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_truth.csv')
+truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes)
+
+headline_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_headline_fp.csv')
+headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes)
+
+manhattan_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_man_borough.csv')
+manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes)
+
+tw_happy <- read_csv("results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_twt_happy.csv")
+tw_happy_summary <- probe_summarizer('Probing for Happiness in Tweets', tw_happy)
+
+basketball <- read_csv("results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_ath_basketball.csv")
+basketball_summary <- probe_summarizer('Probing for Basketball Atheletes', basketball, save_fig = FALSE)
+
+combined_plot <- truth_summary %>% mutate(Dataset = "Truth") %>% 
+  add_row(headline_summary %>% mutate(Dataset = "Frontpage headlines")) %>%
+  add_row(manhattan_summary %>% mutate(Dataset = "Location in Manhattan")) %>%
+  add_row(tw_happy_summary %>% mutate(Dataset = "Happiness in Tweet")) %>%
+  add_row(basketball_summary %>% mutate(Dataset = "Athelete plays basketball"))
+
+ggplot(combined_plot, aes(x = graph_labels, 
+                          y = mean_test_loss,
+                          color = graph_labels,
+                          shape = graph_labels)) +  # Add color aesthetic
+  geom_point() + 
+  myTheme + 
+  labs(y = 'Probe Out of Sample Loss', 
+       x = NULL,
+       title = "Out of sample loss is lower on SAE Error across settings",
+       subtitle = "Results on LLama 3.1 8B. Error bars indicate randomness from using different seeds",
+       caption = "Loss calculated with BCEWithLogitsLoss in PyTorch",
+       color = "Probe Location", shape = "Probe Location") + 
+  geom_errorbar(aes(ymin = mean_test_loss - 1.96*se_test_loss, 
+                    ymax = mean_test_loss + 1.96*se_test_loss),
+                width = 0.1) +
+  scale_y_continuous() + 
+  facet_wrap(~Dataset, scales = 'free') +
+  theme(axis.text.x = element_blank(),  # Remove x-axis text
+        axis.ticks.x = element_blank(),
+        legend.position = 'bottom') +  # Remove x-axis ticks
+  scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
+
+
+ggplot(combined_plot, aes(x = graph_labels, 
+                          y = mean_test_ROC,
+                          color = graph_labels,
+                          shape = graph_labels)) +  # Add color aesthetic
+  geom_point() + 
+  myTheme + 
+  labs(y = 'Probe Out of Sample ROC AUC', 
+       x = NULL,
+       title = "Out of sample ROC AUC is a bit better when probing on SAE Error",
+       subtitle = "Results on Llama 3.1 8B. Error bars indicate randomness from using different seeds",
+       color = "Probe Location", shape = "Probe Location") + 
+  geom_errorbar(aes(ymin = mean_test_ROC - 1.96*se_test_ROC, 
+                    ymax = mean_test_ROC + 1.96*se_test_ROC),
+                width = 0.1) +
+  scale_y_continuous() + 
+  facet_wrap(~Dataset, scales = 'free') +
+  theme(axis.text.x = element_blank(),  # Remove x-axis text
+        axis.ticks.x = element_blank(),
+        legend.position = 'bottom') +  # Remove x-axis ticks
+  scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
+
+
+
+
 
 truth_df <- read_csv('all_cities.csv')
 View(slice_sample(truth_df, n= 10))
