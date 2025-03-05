@@ -85,7 +85,7 @@ dependencies:
   - pydantic-core=2.27.1=py312h4aa5aa6_0
   - pygments=2.15.1=py312h06a4308_1
   - pysocks=1.7.1=py312h06a4308_0
-  - python=3.10
+  - python=3.12.9=h5148396_0
   - python-dateutil=2.9.0.post0=pyhff2d567_1
   - readline=8.2=h5eee18b_0
   - reproc=14.2.4=h6a678d5_2

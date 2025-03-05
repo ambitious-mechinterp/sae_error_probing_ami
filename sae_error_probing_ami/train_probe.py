@@ -34,7 +34,7 @@ def train_test_split_df(df, test_size=0.2, seed=123):
     split_idx = int((1 - test_size) * len(shuffled))
     return shuffled.iloc[:split_idx], shuffled.iloc[split_idx:]
 
-def tokenize_data(df, tokenizer, text_column="statement"):
+def tokenize_data(df, tokenizer, text_column="prompt"):
     texts = df[text_column].tolist()
     tokenized = tokenizer(texts, padding=True, truncation=True, return_tensors="pt")
     return tokenized
@@ -136,7 +136,10 @@ def train_probe(features, labels, dim, lr=1e-2, epochs=5, batch_size=8, device =
     Trains a linear probe (a one-layer model) on the provided features to predict
     the binary labels. Returns the trained probe and a list of loss values.
     """
-    probe = Probe(dim).to(device)
+    # Get dtype from input features to ensure consistency
+    dtype = features.dtype
+    
+    probe = Probe(dim).to(device).to(dtype)  # Ensure probe uses same dtype as features
     optimizer = optim.AdamW(probe.parameters(), lr=lr)
     criterion = nn.BCEWithLogitsLoss()
     dataset = TensorDataset(features, labels)
@@ -144,9 +147,9 @@ def train_probe(features, labels, dim, lr=1e-2, epochs=5, batch_size=8, device =
     losses = []
     for epoch in range(epochs):
         probe.train()
-        for batch_feats, batch_labels in tqdm(loader, desc=f"Epoch {epoch+1}/{epochs}", leave=False):
+        for batch_feats, batch_labels in loader:
             batch_feats = batch_feats.to(device)
-            batch_labels = batch_labels.to(device).float()
+            batch_labels = batch_labels.to(device).float()  # Labels should still be float
             logits = probe(batch_feats)
             loss = criterion(logits, batch_labels)
             optimizer.zero_grad()
@@ -171,8 +174,8 @@ def evaluate_probe_full(probe, features, labels, device):
         accuracy = (preds == lbls).float().mean().item()
         
         # Calculate ROC AUC
-        logits_np = logits.cpu().numpy()
-        labels_np = lbls.cpu().numpy()
+        logits_np = logits.to(t.float32).cpu().numpy()
+        labels_np = lbls.to(t.float32).cpu().numpy()
         try:
             roc_auc = roc_auc_score(labels_np, logits_np)
             # Get ROC curve points for potential future plotting
@@ -371,7 +374,7 @@ def parse_args():
                         help="SAE model release name")
     
     # Dataset arguments
-    parser.add_argument("--dataset", type=str, nargs = "+", default="[all_cities.csv]",
+    parser.add_argument("--dataset", type=str, nargs = "+", default="all_cities.csv",
                         help="Dataset filename in data/raw directory. Accepts multiple datasets")
     parser.add_argument("--label_column", type=str, default="target",
                         help="Column name for labels in the dataset")
@@ -387,7 +390,7 @@ def parse_args():
     # Experiment control
     parser.add_argument("--run_patching", action="store_true",
                         help="Whether to run the patching experiment")
-    parser.add_argument("--result_suffix", type=str, nargs = "+", default=["truth"],
+    parser.add_argument("--result_suffix", type=str, nargs = "+", default="truth",
                         help="Suffix for result files (e.g., 'truth', 'hl_frontp')")
     
     # Compute resources
@@ -411,7 +414,7 @@ if __name__ == "__main__":
     project_root = script_dir.parent    # Project root directory
 
     print('Setting up pipeline')
-    login()
+    #login()
     device = t.device(args.device)
     # Load SAE and the model
     print('Load SAE')
@@ -450,7 +453,7 @@ if __name__ == "__main__":
             "sae_recons": feats_all_recons,
             "sae_diff": feats_all_diff
         }
-        model_sae_id = args.model.replace("-", "_") + "_" + args.sae_id.replace("/", "_").replace("-","_")
+        model_sae_id = args.model.replace("-", "_").replace("/", "_") + "_" + args.sae_id.replace("/", "_").replace("-","_")
         results_df = run_probing_pipeline(df, device, label, features_map, project_root / "models" / model_sae_id, project_root / "results" / model_sae_id, args.epochs, args.lr, args.batch_size, args.n_seeds, args.save_probes_count, result_suffix)
         t.cuda.empty_cache()
         

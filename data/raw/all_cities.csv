@@ -1,4 +1,4 @@
-Unnamed: 0,statement,target,city,country,correct_country,twoshot_prompt
+Unnamed: 0,prompt,target,city,country,correct_country,twoshot_prompt
 0,The city of Krasnodar is in Russia.,1,Krasnodar,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
 The city of Canberra is in Australia. This statement is: True
 The city of Krasnodar is in Russia. This statement is:"

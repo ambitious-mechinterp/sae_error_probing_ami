@@ -17,3 +17,10 @@ And also from this paper: https://arxiv.org/pdf/2502.16681
 `probe_training_main.py` contains all of the probe training and steering code that generates most of the results. It should run on one go but would likely take up more than 24 GB of VRAM when it gets to the steering part. So I run that part separately--you can skip all of the probe generation, as well as the patching experiment which I suspect takes up a bunch of ram and doesn't give it back--in VS code python interactive mode. 
 
 Everything there should be super reproducible. 
+
+
+To run all of the probes here
+
+```bash
+python sae_error_probing_ami/train_probe.py --model meta-llama/Llama-3.1-8B --sae_release llama_scope_lxr_8x --sae_id l19r_8x  --dataset 114_nyc_borough_Manhattan.csv  149_twt_emotion_happiness.csv  155_athlete_sport_basketball.csv  headline_frontpage_sample.csv  all_cities.csv --result_suffix man_borough twt_happy ath_basketball headline_fp truth --n_seeds 120
+```
