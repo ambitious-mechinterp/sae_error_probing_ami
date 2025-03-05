@@ -105,6 +105,7 @@ def generate_probing_features(tokenized, model: HookedSAETransformer, sae: SAE, 
     all_feats_diff = []
     n = input_ids.size(0)
     for i in tqdm(range(0, n, batch_size), desc="Generating features"):
+        t.cuda.empty_cache()
         batch_ids = input_ids[i:i + batch_size]
         batch_mask = attention_mask[i:i + batch_size]
         batch_out = model.run_with_cache_with_saes(
@@ -425,7 +426,7 @@ if __name__ == "__main__":
     )
     sae = sae.to(device)
     print('Load Model')
-    model = HookedSAETransformer.from_pretrained(args.model, device='cpu')
+    model = HookedSAETransformer.from_pretrained(args.model, device='cpu', dtype=t.bfloat16)
     model = model.to(device)
 
     if type(args.dataset) == str:
