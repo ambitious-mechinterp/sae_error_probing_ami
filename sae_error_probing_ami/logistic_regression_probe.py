@@ -152,8 +152,8 @@ def evaluate_probe_full(probe, features, labels, device):
     Evaluates the logistic regression probe on the given features and labels.
     Returns the loss, accuracy, and ROC AUC score.
     """
-    features_np = features.cpu().numpy()
-    labels_np = labels.cpu().numpy()
+    features_np = features.to(t.float32).cpu().numpy()
+    labels_np = labels.to(t.float32).cpu().numpy()
     
     # Get predictions and probabilities
     probas = probe.predict_proba(features_np)[:, 1]  # Probability of class 1
