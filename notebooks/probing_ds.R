@@ -4,7 +4,11 @@ setwd("~/OneDrive/Coding/AISC/SAE_error_probing_AMI")
 
 if (!require(tidyverse)) install.packages("tidyverse"); library(tidyverse)
 if (!require(magrittr)) install.packages("magrittr"); library(magrittr)
-library(estimatr)
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(stringr)
 library(skimr)
 library(modelsummary)
 library(fixest)
@@ -110,9 +114,93 @@ probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
                        list(raw = "std.error", clean = "Std.Errors", fmt = "%.3f")
                      ),# Add significance stars
                      output = "markdown"))
+
+  print(modelsummary(feols(Test_ROC_AUC ~ Feature_Type | as.factor(Seed), data = some_probes, vcov = ~Seed),
+                    fmt = "%.3f",        # 3 decimal places
+                    stars = TRUE,title =str_c(probe_name,": Test ROC AUC mean differences Layer 19"),          # Show confidence intervals instead of std errors
+                    statistic = c("conf.int"),
+                    conf_level = 0.95,
+                    coef_map = c(
+                       "Feature_Typesae_input" = "Residual - SAE Error",
+                       "Feature_Typesae_recons" = "SAE Reconstruction - SAE Error"
+                     ),
+                     gof_map = list(
+                       list(raw = "nobs", clean = "Num.Obs.", fmt = 0),
+                       list(raw = "r.squared", clean = "R²", fmt = "%.3f"),
+                       list(raw = "std.error", clean = "Std.Errors", fmt = "%.3f")
+                     ),# Add significance stars
+                     output = "markdown"))
   return(probe_summary)
 }
 
+
+#Read in logistic regression results
+
+truth_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_truth.csv')
+truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes, save_fig = FALSE)
+
+headline_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_headline_fp.csv')
+headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes, save_fig = FALSE)
+
+manhattan_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_man_borough.csv')
+manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes, save_fig = FALSE)
+
+tw_happy <- read_csv("results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_twt_happy.csv")
+tw_happy_summary <- probe_summarizer('Probing for Happiness in Tweets', tw_happy, save_fig = FALSE)
+
+basketball <- read_csv("results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_ath_basketball.csv")
+basketball_summary <- probe_summarizer('Probing for Basketball Atheletes', basketball, save_fig = FALSE)
+
+combined_plot <- truth_summary %>% mutate(Dataset = "Truth") %>% 
+  add_row(headline_summary %>% mutate(Dataset = "Frontpage headlines")) %>%
+  add_row(manhattan_summary %>% mutate(Dataset = "Location in Manhattan")) %>%
+  add_row(tw_happy_summary %>% mutate(Dataset = "Happiness in Tweet")) %>%
+  add_row(basketball_summary %>% mutate(Dataset = "Athelete plays basketball"))
+
+ggplot(combined_plot, aes(x = graph_labels, 
+                          y = mean_test_accuracy,
+                          color = graph_labels,
+                          shape = graph_labels)) +  # Add color aesthetic
+  geom_point() + 
+  myTheme + 
+  labs(y = 'Probe Out of Sample Accuracy', 
+       x = NULL,
+       title = "Out of sample accuracy with logistic regression",
+       subtitle = "Results on gemma 2b. Error bars indicate randomness from using different seeds",
+       caption = "Loss calculated with BCEWithLogitsLoss in PyTorch",
+       color = "Probe Location", shape = "Probe Location") + 
+  geom_errorbar(aes(ymin = mean_test_accuracy - 1.96*se_test_accuracy, 
+                    ymax = mean_test_accuracy + 1.96*se_test_accuracy),
+                width = 0.1) +
+  scale_y_continuous(labels = scales::percent) + 
+  facet_wrap(~Dataset, scales = 'free') +
+  theme(axis.text.x = element_blank(),  # Remove x-axis text
+        axis.ticks.x = element_blank(),
+        legend.position = 'bottom') +  # Remove x-axis ticks
+  scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
+ggsave("reports/figures/logistic_accuracy.png", width = 6, height = 4, scale = 1.6, dpi = 400)
+
+ggplot(combined_plot, aes(x = graph_labels, 
+                          y = mean_test_ROC,
+                          color = graph_labels,
+                          shape = graph_labels)) +  # Add color aesthetic
+  geom_point() + 
+  myTheme + 
+  labs(y = 'Probe Out of Sample ROC AUC', 
+       x = NULL,
+       title = "Out of sample ROC AUC with logistic regression",
+       subtitle = "Results on gemma 2b. Error bars indicate randomness from using different seeds",
+       color = "Probe Location", shape = "Probe Location") + 
+  geom_errorbar(aes(ymin = mean_test_ROC - 1.96*se_test_ROC, 
+                    ymax = mean_test_ROC + 1.96*se_test_ROC),
+                width = 0.1) +
+  scale_y_continuous() + 
+  facet_wrap(~Dataset, scales = 'free') +
+  theme(axis.text.x = element_blank(),  # Remove x-axis text
+        axis.ticks.x = element_blank(),
+        legend.position = 'bottom') +  # Remove x-axis ticks
+  scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
+ggsave("reports/figures/logistic_roc_auc.png", width = 6, height = 4, scale = 1.2, dpi = 400)
 
 pairwise_performance <- function(some_probes,n_sims = 100){
   colnames(some_probes) <- gsub(" ", "_", colnames(some_probes))
