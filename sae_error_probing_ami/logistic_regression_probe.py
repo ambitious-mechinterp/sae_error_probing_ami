@@ -128,8 +128,8 @@ def train_probe(features, labels, dim, lr=1e-2, epochs=5, batch_size=8, device='
     features to predict the binary labels. Returns the trained model and a list of loss values.
     """
     # Convert features and labels to numpy arrays for sklearn
-    features_np = features.cpu().numpy()
-    labels_np = labels.cpu().numpy()
+    features_np = features.to(t.float32).cpu().numpy()
+    labels_np = labels.to(t.float32).cpu().numpy()
     
     # Initialize and train logistic regression with L2 penalty (C=1/lambda)
     # C is the inverse of regularization strength, so C=0.1 gives lambda=10
@@ -477,6 +477,6 @@ if __name__ == "__main__":
             "sae_recons": feats_all_recons,
             "sae_diff": feats_all_diff
         }
-        model_sae_id = args.model.replace("-", "_").replace("/", "_") + "_" + args.sae_id.replace("/", "_").replace("-","_")
+        model_sae_id = "logistic_" + args.model.replace("-", "_").replace("/", "_") + "_" + args.sae_id.replace("/", "_").replace("-","_")
         results_df = run_probing_pipeline(df, device, label, features_map, project_root / "models" / model_sae_id, project_root / "results" / model_sae_id, args.epochs, args.lr, args.batch_size, args.n_seeds, args.save_probes_count, result_suffix)
         t.cuda.empty_cache()
