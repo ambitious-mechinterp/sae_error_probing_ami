@@ -1,4 +1,6 @@
 import torch as t
+from torch import Tensor
+import pickle
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
@@ -11,77 +13,36 @@ from tqdm import tqdm
 from warnings import warn
 from huggingface_hub import login
 import argparse
+from typing import Any
+from numpy.typing import NDArray
 from pathlib import Path
 import gc
 from sklearn.metrics import roc_auc_score, roc_curve, auc
 from sklearn.linear_model import LogisticRegression
-
-###############################################################################
-# Data Helpers
-###############################################################################
-def train_test_split_df(df: pd.DataFrame, test_size: float = 0.2, seed: int = 123) -> tuple[pd.DataFrame, pd.DataFrame]:
-    np.random.seed(seed)
-    shuffled = df.sample(frac=1, random_state=seed).reset_index(drop=True)
-    split_idx = int((1 - test_size) * len(shuffled))
-    return shuffled.iloc[:split_idx], shuffled.iloc[split_idx:]
-
-def tokenize_data(df: pd.DataFrame, tokenizer: PreTrainedTokenizerFast, text_column: str = "prompt") -> dict:
-    texts = df[text_column].tolist()
-    tokenized = tokenizer(texts, padding=True, return_tensors="pt")
-    return tokenized
-
-
-###############################################################################
-# Last Token Extraction Helpers
-###############################################################################
-def get_last_token_indices(attention_mask: t.Tensor, offset: int = 1) -> t.Tensor:
-    """
-    Given an attention mask of shape (batch, seq_len) where valid tokens are 1
-    and padded tokens are 0, compute the index of the token `offset` positions from the end.
-    
-    Args:
-        attention_mask: Tensor of shape (batch, seq_len) with 1s for valid tokens and 0s for padding
-        offset: Position from the end (1 for last token, 2 for second-to-last, etc.)
-    
-    Returns:
-        Tensor of indices for the specified token position
-    """
-    token_counts = attention_mask.sum(dim=1)
-    indices = token_counts - offset
-    # Make sure we don't go below 0 (if a sequence is too short)
-    indices = t.clamp(indices, min=0)
-    return indices
-
-def extract_last_token_acts(act_tensor, attention_mask, offset=1):
-    """
-    Given a tensor of activations [batch, seq_len, dim] and the corresponding
-    attention mask, select for each sample the activation at the specified token position.
-    
-    Args:
-        act_tensor: Activation tensor of shape (batch, seq_len, dim)
-        attention_mask: Tensor of shape (batch, seq_len) with 1s for valid tokens and 0s for padding
-        offset: Position from the end (1 for last token, 2 for second-to-last, etc.)
-    
-    Returns:
-        Tensor of activations at the specified position
-    """
-    indices = get_last_token_indices(attention_mask, offset)
-    batch_indices = t.arange(act_tensor.size(0), device=act_tensor.device)
-    activations = act_tensor[batch_indices, indices, :]
-    return activations
+from utils import tokenize_data, extract_last_token_acts
+from jaxtyping import Float
 
 
 ###############################################################################
 # Feature Generation
 ###############################################################################
-def generate_probing_features(tokenized: dict[str, t.Tensor], model: HookedSAETransformer, 
-                              sae: SAE, layer: int = 19, batch_size: int = 8, device: t.device = 'cuda', offset: int = 1
-                              ) -> tuple[t.Tensor, t.Tensor, t.Tensor, t.Tensor]:
+def generate_probing_features(tokenized: dict[str, Float[Tensor, "batch seq_len"]], model: HookedSAETransformer, 
+                              sae: SAE, layer: int = 19, batch_size: int = 8, device: t.device | str = 'cuda', offset: int = 1
+                              ) -> tuple[Float[Tensor, "batch d_model"], Float[Tensor, "batch d_model"], Float[Tensor, "batch d_model"], Float[Tensor, "batch d_sae_hidden"]]:
     """
-    Runs the model (with run_with_cache_with_saes) in batches on the tokenized input.
-    For each batch it extracts the three features:
-      - hook_sae_input, hook_sae_recons, and (sae_input - sae_recons)
-    AND additionally extracts the intermediate activations (sae_acts_post).
+    Gather activations for residual stream, SAE activations, SAE error, SAE reconstruction.
+
+    Args:
+        tokenized: Tokenized input data.
+        model: Model to use for feature extraction.
+        sae: SAE to use for feature extraction.
+        layer: Layer to extract activations from.
+        batch_size: Batch size for feature extraction.
+        device: Device to use for feature extraction.
+        offset: Offset from the last token to extract activations from.
+    
+    Returns:
+        Tuple of tensors (input, recons, error, acts_post_nonlinearity)
     """
     input_ids = tokenized["input_ids"].to(device)
     attention_mask = tokenized["attention_mask"].to(device)
@@ -121,7 +82,8 @@ def generate_probing_features(tokenized: dict[str, t.Tensor], model: HookedSAETr
 ###############################################################################
 # Probe Training and Evaluation
 ###############################################################################
-def train_probe(features: t.Tensor, labels: t.Tensor, epochs: int = 5, batch_size: int = 8, device: t.device = 'cuda', penalty: str = 'l2', C: float = 0.1) -> tuple[LogisticRegression, None]:
+def train_logistic_probe(features: Float[Tensor, "batch d_model"], labels: Float[Tensor, "batch"], epochs: int = 2, 
+                batch_size: int = 8, penalty: str = 'l2', C: float = 0.1) -> LogisticRegression:
     """
     Trains a logistic regression model with the specified penalty (l2 by default, l1 for SAE acts)
     on the provided features to predict the binary labels. Returns the trained model.
@@ -140,9 +102,9 @@ def train_probe(features: t.Tensor, labels: t.Tensor, epochs: int = 5, batch_siz
     )
 
     model.fit(features_np, labels_np)
-    return model, None
+    return model
 
-def evaluate_probe_full(probe: LogisticRegression, features: t.Tensor, labels: t.Tensor, device: t.device):
+def evaluate_probe_full(probe: LogisticRegression, features: Float[Tensor, "batch d_model"], labels: Float[Tensor, "batch"]) -> tuple[float, float, float, tuple[float, float]]:
     """
     Evaluates the logistic regression probe on the given features and labels.
     Returns the loss, accuracy, and ROC AUC score.
@@ -173,9 +135,9 @@ def evaluate_probe_full(probe: LogisticRegression, features: t.Tensor, labels: t
         roc_auc = float('nan')
         roc_curve_data = None
         
-    return loss, accuracy, roc_auc, roc_curve_data
+    return loss, accuracy, roc_auc, roc_curve_data # type: ignore
 
-def get_probe_weights(probe, activation_dim):
+def get_probe_weights(probe: LogisticRegression) -> Float[Tensor, "d_model"]:
     """
     Extracts weights from the logistic regression model.
     
@@ -192,11 +154,195 @@ def get_probe_weights(probe, activation_dim):
     
     return t.tensor(weights, dtype=t.float32)
 
+def train_and_evaluate_probe(train_feats: Float[Tensor, "batch d_mod_or_sae_hidden"], train_labels: Float[Tensor, "batch"], 
+                            test_feats: Float[Tensor, "batch d_mod_or_sae_hidden"], test_labels: Float[Tensor, "batch"], 
+                            feature_type: str, seed: int, epochs: int, batch_size: int, l1_c: float, l2_c: float
+                            ) -> tuple[LogisticRegression, dict[str, float | Any], Float[Tensor, "d_mod_or_sae_hidden"]]:
+    """
+    Train and evaluate a logistic regression probe for a specific feature type.
+    
+    Args:
+        train_feats: Training features
+        train_labels: Training labels
+        test_feats: Test features
+        test_labels: Test labels
+        feature_type: Type of feature ('sae_input', 'sae_diff', or 'sae_acts_post')
+        seed: Random seed
+        epochs: Number of training epochs
+        batch_size: Batch size
+        l1_c: L1 regularization strength
+        l2_c: L2 regularization strength
+        
+    Returns:
+        Tuple of (probe, results_dict, weight_vector)
+    """
+    # Set the random seed for reproducibility
+    np.random.seed(seed)
+    
+    # Use L1 penalty for sae_acts_post; L2 for the other probes
+    penalty = 'l1' if feature_type == "sae_acts_post" else 'l2'
+    C = l1_c if feature_type == "sae_acts_post" else l2_c
+    
+    probe = train_logistic_probe(train_feats, train_labels, 
+                           epochs=epochs, batch_size=batch_size, penalty=penalty, C=C)
+    
+    train_loss, train_acc, train_roc_auc, _ = evaluate_probe_full(probe, train_feats, train_labels)
+    test_loss, test_acc, test_roc_auc, _ = evaluate_probe_full(probe, test_feats, test_labels)
+    
+    weight_vector = get_probe_weights(probe)
+    
+    results = {
+        "Seed": seed,
+        "Feature_Type": feature_type,
+        "Train_Loss": train_loss,
+        "Train_Accuracy": train_acc,
+        "Train_ROC_AUC": train_roc_auc,
+        "Test_Loss": test_loss,
+        "Test_Accuracy": test_acc,
+        "Test_ROC_AUC": test_roc_auc,
+        "Weight_Norm": t.norm(weight_vector).item()
+    }
+    
+    return probe, results, weight_vector
+
+def combine_sae_and_error(train_indices: NDArray[np.int32], test_indices: NDArray[np.int32], 
+                            features_map: dict[str, Float[Tensor, "batch d_mod_or_sae_hidden"]], sae: SAE, 
+                            device: t.device | str, top_indices: Float[Tensor, "k"]
+                            ) -> tuple[Float[Tensor, "batch d_mod"], Float[Tensor, "batch d_mod"]]:
+    """
+    Create combined features using top-k dimensions from the sae_acts_post probe.
+    
+    Args:
+        train_indices: Indices for training data
+        test_indices: Indices for test data
+        features_map: Dictionary mapping feature types to tensors
+        sae: SAE model
+        device: Device to use
+        top_indices: Indices of top-k dimensions
+        
+    Returns:
+        Tuple of (train_combined, test_combined)
+    """
+    train_acts_post = features_map["sae_acts_post"][train_indices].to(device)
+    test_acts_post = features_map["sae_acts_post"][test_indices].to(device)
+    train_error = features_map["sae_diff"][train_indices].to(device)
+    test_error = features_map["sae_diff"][test_indices].to(device)
+    
+    # Multiply the filtered activations by the corresponding decoder weights using einsum notation, then add the error
+    filtered_train = t.einsum('ij,jk->ik', train_acts_post[:, top_indices], sae.W_dec[top_indices, :])
+    filtered_test = t.einsum('ij,jk->ik', test_acts_post[:, top_indices], sae.W_dec[top_indices, :])
+    
+    train_combined = filtered_train + train_error
+    test_combined = filtered_test + test_error
+    
+    return train_combined, test_combined
+
+def compute_cosine_similarities(weight_vectors: dict[str, Float[Tensor, "d_model"]]) -> dict[str, float]:
+    """
+    Compute cosine similarities between weight vectors.
+    
+    Args:
+        weight_vectors: Dictionary mapping feature types to weight vectors
+        
+    Returns:
+        Dictionary of cosine similarities
+    """
+    w_input = weight_vectors["sae_input"]
+    w_error = weight_vectors["sae_diff"]
+    w_combined = weight_vectors["sae_acts_and_error"]
+    
+    with t.no_grad():
+        cos_sim_input_error = F.cosine_similarity(w_input, w_error, dim=0).item()
+        cos_sim_input_combined = F.cosine_similarity(w_input, w_combined, dim=0).item()
+        cos_sim_error_combined = F.cosine_similarity(w_error, w_combined, dim=0).item()
+    
+    return {
+        "Cosine_Sim_Input_Error": cos_sim_input_error,
+        "Cosine_Sim_Input_Combined": cos_sim_input_combined,
+        "Cosine_Sim_Error_Combined": cos_sim_error_combined
+    }
+
+def save_probes_and_compute_similarities(models_dir: Path, results_dir: Path, save_probes_count: int, 
+                                        result_suffix: str, probe_type: str | None = None, plot_dir: Path | None = None) -> None:
+    """
+    Compute cosine similarities for saved probes
+    
+    Args:
+        models_dir: Directory to save models
+        results_dir: Directory to save results
+        plot_dir: Directory to save plots
+        save_probes_count: Number of probes to save
+        result_suffix: Suffix for result files
+        probe_type: if it's sae_acts_post, plot the bar chart of the absolute coefficients
+    Returns:
+        None
+    """
+    if save_probes_count <= 0:
+        return
+        
+    with t.no_grad():
+        print("Computing average cosine similarities across saved sae_acts_post probes and plotting coefficient bar chart...")
+        similarity_results = []
+        weights_list = []
+        import pickle
+        
+        for seed in range(save_probes_count):
+            model_filename = f"probe_{probe_type}_seed_{seed}.pt"
+            filepath = models_dir / model_filename
+            if filepath.exists():
+                with open(filepath, 'rb') as f:
+                    model_saved = pickle.load(f)
+                weight_vector = get_probe_weights(model_saved)
+                weights_list.append(weight_vector)
+            else:
+                warn(f"Probe file {filepath} does not exist.")
+                
+        sims = []
+        num = len(weights_list)
+        for i in range(num):
+            for j in range(i+1, num):
+                sim = F.cosine_similarity(weights_list[i], weights_list[j], dim=0).item()
+                sims.append(sim)
+                
+        if sims:
+            avg_sim = np.mean(sims)
+            std_sim = np.std(sims)
+        else:
+            avg_sim = None
+            std_sim = None
+            
+        similarity_results.append({
+            "Feature_Type": probe_type,
+            "Average_Cosine_Similarity": avg_sim,
+            "Cosine_Similarity_Std": std_sim
+        })
+        
+        similarities_df = pd.DataFrame(similarity_results)
+        suffix = f"_{result_suffix}" if result_suffix else ""
+        similarities_csv = results_dir / f"probe_similarities{suffix}.csv"
+        similarities_df.to_csv(similarities_csv, index=False)
+
+        # Plot bar chart for average absolute coefficients of sae_acts_post probe
+        if probe_type == "sae_acts_post":
+            assert plot_dir is not None
+            stacked_weights = t.stack(weights_list)  # shape: (n_saved, feature_dim)
+            avg_abs = stacked_weights.abs().mean(dim=0).cpu().numpy()
+            import matplotlib.pyplot as plt
+            plt.figure(figsize=(10,5))
+            plt.bar(np.arange(len(avg_abs)), avg_abs)
+            plt.xlabel("Dimension Index")
+            plt.ylabel("Average Absolute Coefficient")
+            plt.title("Average Absolute Coefficients for sae_acts_post Probe")
+            plt.tight_layout()
+            plt.savefig(plot_dir / f"sae_acts_post_coeff_bar{suffix}.png")
+            plt.close()
+
 def run_probing_pipeline(df: pd.DataFrame, device: t.device, 
                          label_col: str, features_map: dict[str, t.Tensor],
-                         models_dir: Path, results_dir: Path,
+                         models_dir: Path, results_dir: Path, plot_dir: Path,
                          sae: SAE,
-                         epochs=2, lr=0.005, batch_size=16,
+                         k: int = 6,
+                         epochs=2, batch_size=16,
                          n_seeds=50, save_probes_count=20, 
                          l2_c=0.1, l1_c=1,
                          result_suffix=""):
@@ -207,22 +353,22 @@ def run_probing_pipeline(df: pd.DataFrame, device: t.device,
       - Probe on the intermediate activations (sae_acts_post) [L1]
       - Combined probe (sae_acts_and_error): computed by filtering sae_acts_post via the top-k
         weight dimensions (from the L1 probe) through the decoder weights and adding sae_diff [L2]
-    Also computes cosine similarities among the three L2 probes and (if saving probes)
-    plots a bar chart of the absolute coefficients for the sae_acts_post probe.
+    Also computes cosine similarities among the three d_model probes.
+    Plots a bar chart of the absolute coefficients for the sae_acts_post probe.
     """
     models_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
-
+    plot_dir.mkdir(parents=True, exist_ok=True)
+    
     suffix = f"_{result_suffix}" if result_suffix else ""
     results_csv = results_dir / f"probe_results{suffix}.csv"
-    similarities_csv = results_dir / f"probe_similarities{suffix}.csv"
 
     results = []
     n = df.shape[0]
     train_size = int(0.8 * n)
 
     for seed in tqdm(range(n_seeds), desc="Training probes"):
-        # Create a new random split per seed:
+        # Create a new random split per seed
         np.random.seed(seed)
         indices = np.random.permutation(n)
         train_indices = indices[:train_size]
@@ -232,10 +378,11 @@ def run_probing_pipeline(df: pd.DataFrame, device: t.device,
         train_labels = labels_all[train_indices]
         test_labels = labels_all[test_indices]
 
-        # Dictionaries to hold our probe objects and results:
+        # Dictionaries to hold our probe objects and results
         probes_for_label = {}
         temp_results = {}
-        weight_vectors = {}  # For storing weights from L2 probes
+        weight_vectors = {}  # For storing weights from d_model probes
+        l1_weight_vector = None
 
         # Train three probes on the provided features (excluding the old sae_recons)
         for feature_type in ["sae_input", "sae_diff", "sae_acts_post"]:
@@ -243,93 +390,60 @@ def run_probing_pipeline(df: pd.DataFrame, device: t.device,
             train_feats = feats_all[train_indices]
             test_feats = feats_all[test_indices]
             
-            # Set the random seed for reproducibility
-            np.random.seed(seed)
-            # Use L1 penalty for sae_acts_post; L2 for the other probes.
-            penalty = 'l1' if feature_type == "sae_acts_post" else 'l2'
-            C = l1_c if feature_type == "sae_acts_post" else l2_c
-            probe, _ = train_probe(train_feats, train_labels, 
-                                   epochs=epochs, batch_size=batch_size, device=device, penalty=penalty, C=C)
-            train_loss, train_acc, train_roc_auc, _ = evaluate_probe_full(probe, train_feats, train_labels, device=device)
-            test_loss, test_acc, test_roc_auc, _ = evaluate_probe_full(probe, test_feats, test_labels, device=device)
-            weight_vector = get_probe_weights(probe, train_feats.size(1))
-            if penalty == 'l2':
+            probe, result, weight_vector = train_and_evaluate_probe(
+                train_feats, train_labels, test_feats, test_labels,
+                feature_type, seed, epochs, batch_size, l1_c, l2_c
+            )
+            
+            
+            if feature_type == 'sae_acts_post':
+                l1_weight_vector = weight_vector
+            elif feature_type != "sae_acts_post":
                 weight_vectors[feature_type] = weight_vector
-            else:
-                l1_weight_vector = weight_vector  # Save this for later top-k extraction.
+                
             probes_for_label[feature_type] = probe
-            temp_results[feature_type] = {
-                "Seed": seed,
-                "Feature_Type": feature_type,
-                "Label": label_col,
-                "Train_Loss": train_loss,
-                "Train_Accuracy": train_acc,
-                "Train_ROC_AUC": train_roc_auc,
-                "Test_Loss": test_loss,
-                "Test_Accuracy": test_acc,
-                "Test_ROC_AUC": test_roc_auc,
-                "Weight_Norm": t.norm(weight_vector).item()
-            }
-            # Save the sae_acts_post probe (L1) for the first save_probes_count seeds.
+            temp_results[feature_type] = result
+            
             if seed < save_probes_count:
-                safe_label = label_col.replace(' ', '_')
-                model_filename = f"probe_{feature_type}_{safe_label}_seed_{seed}.pt"
-                import pickle
+                model_filename = f"probe_{feature_type}_seed_{seed}.pt"
                 with open(models_dir / model_filename, 'wb') as f:
                     pickle.dump(probe, f)
 
-        # Create combined features (sae_acts_and_error) using top-k dimensions from the sae_acts_post probe.
-        k = 3  # Number of top dimensions to use (this can be varied)
-        # Get top k indices by absolute value from the L1 probe's weight vector.
+        # Create combined features (sae_acts_and_error) using top-k dimensions from the sae_acts_post probe
+        # Get top k indices by absolute value from the L1 probe's weight vector
         topk = t.topk(l1_weight_vector.abs(), k)
-        top_indices = topk.indices  # A tensor containing the top-k indices.
-        # For the combined probe, retrieve the corresponding activations and error features.
-        train_acts_post = features_map["sae_acts_post"][train_indices].to(device)
-        test_acts_post = features_map["sae_acts_post"][test_indices].to(device)
-        train_error = features_map["sae_diff"][train_indices].to(device)
-        test_error = features_map["sae_diff"][test_indices].to(device)
-        # Multiply the filtered activations by the corresponding decoder weights using einsum notation, then add the error.
-        filtered_train = t.einsum('ij,jk->ik', train_acts_post[:, top_indices], sae.W_dec[top_indices, :])
-        filtered_test = t.einsum('ij,jk->ik', test_acts_post[:, top_indices], sae.W_dec[top_indices, :])
-        train_combined = filtered_train + train_error
-        test_combined = filtered_test + test_error
+        top_indices = topk.indices  # A tensor containing the top-k indices
+        
+        # Create combined features
+        train_combined, test_combined = combine_sae_and_error(
+            train_indices, test_indices, features_map, sae, device, top_indices
+        )
 
-        np.random.seed(seed)
-        combined_probe, _ = train_probe(train_combined, train_labels,
-                                        epochs=epochs, batch_size=batch_size, device=device, penalty='l2', C=l2_c)
-        train_loss, train_acc, train_roc_auc, _ = evaluate_probe_full(combined_probe, train_combined, train_labels, device=device)
-        test_loss, test_acc, test_roc_auc, _ = evaluate_probe_full(combined_probe, test_combined, test_labels, device=device)
-        weight_vector = get_probe_weights(combined_probe, train_combined.size(1))
-        weight_vectors["sae_acts_and_error"] = weight_vector
+        # Train combined probe
+        combined_probe, combined_result, combined_weight = train_and_evaluate_probe(
+            train_combined, train_labels, test_combined, test_labels,
+            "sae_acts_and_error", seed, epochs, batch_size, l1_c, l2_c
+        )
+        if seed < save_probes_count:
+            model_filename = f"probe_sae_acts_and_error_seed_{seed}.pt"
+            with open(models_dir / model_filename, 'wb') as f:
+                pickle.dump(combined_probe, f)
+        
+
+        combined_result["Top_k_Indices"] = top_indices.tolist()
+        
+        weight_vectors["sae_acts_and_error"] = combined_weight
         probes_for_label["sae_acts_and_error"] = combined_probe
-        temp_results["sae_acts_and_error"] = {
-            "Seed": seed,
-            "Feature_Type": "sae_acts_and_error",
-            "Label": label_col,
-            "Train_Loss": train_loss,
-            "Train_Accuracy": train_acc,
-            "Train_ROC_AUC": train_roc_auc,
-            "Test_Loss": test_loss,
-            "Test_Accuracy": test_acc,
-            "Test_ROC_AUC": test_roc_auc,
-            "Weight_Norm": t.norm(weight_vector).item(),
-            "Top_k_Indices": top_indices.tolist()
-        }
+        temp_results["sae_acts_and_error"] = combined_result
 
-        # Compute cosine similarities among the three L2 probes: sae_input, sae_diff, and sae_acts_and_error.
-        w_input = weight_vectors["sae_input"]
-        w_error = weight_vectors["sae_diff"]
-        w_combined = weight_vectors["sae_acts_and_error"]
-        with t.no_grad():
-            cos_sim_input_error = F.cosine_similarity(w_input, w_error, dim=0).item()
-            cos_sim_input_combined = F.cosine_similarity(w_input, w_combined, dim=0).item()
-            cos_sim_error_combined = F.cosine_similarity(w_error, w_combined, dim=0).item()
+        # Compute cosine similarities among the three L2 probes
+        similarities = compute_cosine_similarities(weight_vectors)
+        
+        # Add similarities to all results
         for ft in ["sae_input", "sae_diff", "sae_acts_and_error"]:
-            temp_results[ft]["Cosine_Sim_Input_Error"] = cos_sim_input_error
-            temp_results[ft]["Cosine_Sim_Input_Combined"] = cos_sim_input_combined
-            temp_results[ft]["Cosine_Sim_Error_Combined"] = cos_sim_error_combined
+            temp_results[ft].update(similarities)
 
-        # Append the temporary results for this seed.
+        # Append the temporary results for this seed
         for result in temp_results.values():
             results.append(result)
 
@@ -344,71 +458,97 @@ def run_probing_pipeline(df: pd.DataFrame, device: t.device,
     print(results_df.groupby('Feature_Type')['Test_Accuracy'].mean())
     print('Average Test ROC AUC')
     print(results_df.groupby('Feature_Type')['Test_ROC_AUC'].mean())
-    better_loss = np.mean(
-        results_df[results_df["Feature_Type"] == "sae_diff"]["Test_Loss"].to_numpy() < results_df[results_df["Feature_Type"] == "sae_input"]["Test_Loss"].to_numpy())
-    print(f"Proportion of sae error nodes with better loss: {better_loss:3f}")
+    
+    
     better_auc = np.mean(
-        results_df[results_df["Feature_Type"] == "sae_diff"]["Test_ROC_AUC"].to_numpy() > results_df[results_df["Feature_Type"] == "sae_input"]["Test_ROC_AUC"].to_numpy())
-    print(f"Proportion of sae error nodes with better ROC AUC: {better_auc:3f}")
+        results_df[results_df["Feature_Type"] == "sae_acts_and_error"]["Test_ROC_AUC"].to_numpy() > 
+        results_df[results_df["Feature_Type"] == "sae_input"]["Test_ROC_AUC"].to_numpy()
+    )
+    print(f"Proportion of combined nodes with better ROC AUC: {better_auc:3f}")
+
+    better_accuracy = np.mean(
+        results_df[results_df["Feature_Type"] == "sae_acts_and_error"]["Test_Accuracy"].to_numpy() > 
+        results_df[results_df["Feature_Type"] == "sae_input"]["Test_Accuracy"].to_numpy()
+    )
+    print(f"Proportion of combined nodes with better accuracy: {better_accuracy:3f}")
 
     results_df.to_csv(results_csv, index=False)
 
-    # If saving probes, compute cosine similarities across saved sae_acts_post probes and plot a bar chart.
-    if save_probes_count > 0:
-        with t.no_grad():
-            print("Computing average cosine similarities across saved sae_acts_post probes and plotting coefficient bar chart...")
-            similarity_results = []
-            safe_label = label_col.replace(' ', '_')
-            probe_type = "sae_acts_post"
-            weights_list = []
-            import pickle
-            for seed in range(save_probes_count):
-                model_filename = f"probe_{probe_type}_{safe_label}_seed_{seed}.pt"
-                filepath = models_dir / model_filename
-                if filepath.exists():
-                    with open(filepath, 'rb') as f:
-                        model_saved = pickle.load(f)
-                    weight_vector = get_probe_weights(model_saved, features_map[probe_type].size(1))
-                    weights_list.append(weight_vector)
-                else:
-                    warn(f"Probe file {filepath} does not exist.")
-            sims = []
-            num = len(weights_list)
-            for i in range(num):
-                for j in range(i+1, num):
-                    sim = F.cosine_similarity(weights_list[i], weights_list[j], dim=0).item()
-                    sims.append(sim)
-            if sims:
-                avg_sim = np.mean(sims)
-                std_sim = np.std(sims)
-            else:
-                avg_sim = None
-                std_sim = None
-            similarity_results.append({
-                "Feature_Type": probe_type,
-                "Label": label_col,
-                "Average_Cosine_Similarity": avg_sim,
-                "Cosine_Similarity_Std": std_sim
-            })
-            similarities_df = pd.DataFrame(similarity_results)
-            similarities_df.to_csv(similarities_csv, index=False)
-
-            # Plot bar chart for average absolute coefficients of sae_acts_post probe.
-            if weights_list:
-                stacked_weights = t.stack(weights_list)  # shape: (n_saved, feature_dim)
-                avg_abs = stacked_weights.abs().mean(dim=0).cpu().numpy()
-                import matplotlib.pyplot as plt
-                plt.figure(figsize=(10,5))
-                plt.bar(np.arange(len(avg_abs)), avg_abs)
-                plt.xlabel("Dimension Index")
-                plt.ylabel("Average Absolute Coefficient")
-                plt.title("Average Absolute Coefficients for sae_acts_post Probe")
-                plt.tight_layout()
-                plt.savefig(results_dir / f"sae_acts_post_coeff_bar{suffix}.png")
-                plt.close()
-
+    # Compute similarities and save plots if needed
     return results_df
 
+def process_dataset(dataset, result_suffix, args, model, sae, project_root, device):
+    """
+    Process a single dataset with the probing pipeline.
+    
+    Args:
+        dataset: Dataset filename
+        result_suffix: Suffix for result files
+        args: Command line arguments
+        model: Model to use
+        sae: SAE to use
+        project_root: Project root directory
+        device: Device to use
+        
+    Returns:
+        None
+    """
+    gc.collect()
+    print(f"Processing dataset: {dataset}")
+    
+    # Load and prepare data
+    df = pd.read_csv(project_root / "data" / "raw" / dataset)
+    print("Tokenizing entire dataset...")
+    tokenized_all = tokenize_data(df, model.tokenizer)
+    
+    # Generate features
+    print(f"Generating features for entire dataset with offset: {args.token_position_offset}")
+    feats_all_input, feats_all_recons, feats_all_diff, feats_all_acts_post = generate_probing_features(
+        tokenized_all, model, sae, 
+        layer=args.layer,
+        batch_size=args.batch_size, 
+        device=device, 
+        offset=args.token_position_offset
+    )
+    
+    # Build the features map
+    features_map = {
+        "sae_input": feats_all_input,
+        "sae_diff": feats_all_diff,
+        "sae_acts_post": feats_all_acts_post
+    }
+    
+    # Set up directories
+    model_sae_id = "logistic_combined_" + args.model.replace("-", "_").replace("/", "_") + "_" + args.sae_id.replace("/", "_").replace("-", "_")
+    models_dir = project_root / "models" / model_sae_id
+    results_dir = project_root / "data" / "processed" / model_sae_id
+    plot_dir = project_root / "reports" / "figures" / model_sae_id
+    # Run probing pipeline
+    _ = run_probing_pipeline(
+        df=df, 
+        device=device, 
+        label_col=args.label_column, 
+        features_map=features_map, 
+        models_dir=models_dir, 
+        results_dir=results_dir,
+        plot_dir=plot_dir,
+        sae=sae,
+        k=args.k,
+        epochs=args.epochs, 
+        batch_size=args.batch_size,
+        n_seeds=args.n_seeds, 
+        save_probes_count=args.save_probes_count,
+        l1_c=args.l1_regularization,
+        l2_c=args.l2_regularization,
+        result_suffix=result_suffix
+    )
+    for probe_type in ["sae_input", "sae_diff", "sae_acts_post", "sae_acts_and_error"]:
+        save_probes_and_compute_similarities(
+            models_dir, results_dir, args.save_probes_count, result_suffix, probe_type, plot_dir
+        )
+    
+    
+    t.cuda.empty_cache()
 
 def parse_args():
     """Parse command line arguments."""
@@ -437,6 +577,12 @@ def parse_args():
                         help="Number of random seeds to use for training")
     parser.add_argument("--save_probes_count", type=int, default=0,
                         help="Number of probes to save (0 for none)")
+    parser.add_argument("--k", type=int, default=6,
+                        help="Number of top activations to use for combined features")
+    parser.add_argument("--l1_regularization", type=float, default=0.25,
+                        help="L1 regularization strength for SAE activations probe")
+    parser.add_argument("--l2_regularization", type=float, default=0.1,
+                        help="L2 regularization strength for other probes")
     
     # Experiment control
     parser.add_argument("--run_patching", action="store_true",
@@ -453,63 +599,54 @@ def parse_args():
     #Hyperparameters
     parser.add_argument("--epochs", type=int, default=2,
                         help="Number of epochs to train for")
-    parser.add_argument("--lr", type=float, default=0.005,
-                        help="Learning rate for training (not used for logistic regression)")
     
     return parser.parse_args()
 
 if __name__ == "__main__":
     args = parse_args()
+    
     # Set up paths
     script_dir = Path(__file__).parent  # Directory of this script
     project_root = script_dir.parent    # Project root directory
 
     print('Setting up pipeline')
-    # login()  # Uncomment if needed
     device = t.device(args.device)
-    print('Load SAE')
+    
+    # Load SAE
+    print('Loading SAE')
     sae, cfg_dict, sparsity = SAE.from_pretrained(
         release=args.sae_release,
         sae_id=args.sae_id,
         device="cpu"
     )
     sae = sae.to(device)
-    print('Load Model')
-    model = HookedSAETransformer.from_pretrained(args.model, device='cpu', dtype=t.bfloat16)
+    
+    # Load model
+    print('Loading model')
+    model = HookedSAETransformer.from_pretrained(
+        args.model, 
+        device='cpu', 
+        dtype=t.bfloat16
+    )
     model = model.to(device)
 
-    if type(args.dataset) == str:
+    # Ensure datasets and suffixes are lists
+    if isinstance(args.dataset, str):
         args.dataset = [args.dataset]
 
-    if type(args.result_suffix) == str:
+    if isinstance(args.result_suffix, str):
         args.result_suffix = [args.result_suffix]
 
     assert len(args.dataset) == len(args.result_suffix), "Dataset and result suffix must have the same length"
 
+    # Process each dataset
     for dataset, result_suffix in zip(args.dataset, args.result_suffix):
-        gc.collect()
-        print(f"Processing dataset: {dataset}")
-        df = pd.read_csv(project_root / "data" / "raw" / dataset)
-        print("Tokenizing entire dataset...")
-        tokenized_all = tokenize_data(df, model.tokenizer)
-        label = args.label_column
-        print(f"Generating features for entire dataset with offset: {args.token_position_offset}")
-        # Note: generate_probing_features now returns four outputs. We ignore feats_recons.
-        feats_all_input, feats_all_recons, feats_all_diff, feats_all_acts_post = generate_probing_features(
-            tokenized_all, model, sae, batch_size=args.batch_size, device=device, offset=args.token_position_offset
+        process_dataset(
+            dataset, 
+            result_suffix, 
+            args, 
+            model, 
+            sae, 
+            project_root, 
+            device
         )
-        # Build the features map using only the features used for probing.
-        features_map = {
-            "sae_input": feats_all_input,
-            "sae_diff": feats_all_diff,
-            "sae_acts_post": feats_all_acts_post
-        }
-        model_sae_id = "logistic_combined_" + args.model.replace("-", "_").replace("/", "_") + "_" + args.sae_id.replace("/", "_").replace("-", "_")
-        results_df = run_probing_pipeline(df = df, device = device, label_col = label, features_map = features_map, 
-                                          models_dir = project_root / "models" / model_sae_id, 
-                                          results_dir = project_root / "results" / model_sae_id,
-                                          sae = sae,
-                                          epochs = args.epochs, lr = args.lr, batch_size = args.batch_size,
-                                          n_seeds = args.n_seeds, save_probes_count = args.save_probes_count,
-                                          result_suffix = result_suffix)
-        t.cuda.empty_cache()

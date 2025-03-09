@@ -137,6 +137,14 @@ probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
 
 #Read in logistic regression results
 
+
+
+
+
+manhattan_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_man_borough.csv')
+manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes, save_fig = FALSE)
+
+
 truth_probes <- read_csv('results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_truth.csv')
 truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes, save_fig = FALSE)
 
