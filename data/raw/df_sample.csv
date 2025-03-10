@@ -1,0 +1,1441 @@
+Unnamed: 0,statement,target,city,country,correct_country,twoshot_prompt
+494,The city of Calgary is not in Canada.,0,Calgary,Canada,Canada,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Calgary is not in Canada. This statement is:"
+403,The city of Iztapalapa is not in Yemen.,1,Iztapalapa,Yemen,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Iztapalapa is not in Yemen. This statement is:"
+959,The city of Bhavnagar is in Japan.,0,Bhavnagar,Japan,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bhavnagar is in Japan. This statement is:"
+939,The city of Amman is not in Malaysia.,1,Amman,Malaysia,Jordan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Amman is not in Malaysia. This statement is:"
+295,The city of Libreville is in the United States.,0,Libreville,the United States,Gabon,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Libreville is in the United States. This statement is:"
+1416,The city of Mar del Plata is in Argentina.,1,Mar del Plata,Argentina,Argentina,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mar del Plata is in Argentina. This statement is:"
+446,The city of Tucson is not in the United States.,0,Tucson,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tucson is not in the United States. This statement is:"
+1229,The city of Indianapolis is in Côte d'Ivoire.,0,Indianapolis,Côte d'Ivoire,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Indianapolis is in Côte d'Ivoire. This statement is:"
+577,The city of Luohe is not in Brazil.,1,Luohe,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Luohe is not in Brazil. This statement is:"
+980,The city of Puning is not in China.,0,Puning,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Puning is not in China. This statement is:"
+97,The city of Boumerdes is in Iran.,0,Boumerdes,Iran,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Boumerdes is in Iran. This statement is:"
+108,The city of Macapa is not in Brazil.,0,Macapa,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Macapa is not in Brazil. This statement is:"
+730,The city of Cimahi is in Indonesia.,1,Cimahi,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cimahi is in Indonesia. This statement is:"
+393,The city of Pyongyang is not in Argentina.,1,Pyongyang,Argentina,North Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Pyongyang is not in Argentina. This statement is:"
+763,The city of Vijayawada is in Nigeria.,0,Vijayawada,Nigeria,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Vijayawada is in Nigeria. This statement is:"
+98,The city of Asmara is in Eritrea.,1,Asmara,Eritrea,Eritrea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Asmara is in Eritrea. This statement is:"
+231,The city of Yiwu is in India.,0,Yiwu,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yiwu is in India. This statement is:"
+583,The city of Hanzhong is not in Iran.,1,Hanzhong,Iran,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hanzhong is not in Iran. This statement is:"
+896,The city of Al Ain City is not in the United Arab Emirates.,0,Al Ain City,the United Arab Emirates,the United Arab Emirates,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Ain City is not in the United Arab Emirates. This statement is:"
+1339,The city of Amritsar is in Moldova.,0,Amritsar,Moldova,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Amritsar is in Moldova. This statement is:"
+1361,The city of Hezhou is not in India.,1,Hezhou,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hezhou is not in India. This statement is:"
+434,The city of Siliguri is in India.,1,Siliguri,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Siliguri is in India. This statement is:"
+1277,The city of Makassar is not in China.,1,Makassar,China,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Makassar is not in China. This statement is:"
+1470,The city of Weinan is in China.,1,Weinan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Weinan is in China. This statement is:"
+318,The city of Jaboatao dos Guararapes is in Brazil.,1,Jaboatao dos Guararapes,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jaboatao dos Guararapes is in Brazil. This statement is:"
+1079,The city of Kampala is not in Turkey.,1,Kampala,Turkey,Uganda,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kampala is not in Turkey. This statement is:"
+764,The city of Theni is in India.,1,Theni,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Theni is in India. This statement is:"
+700,The city of Comilla is not in Bangladesh.,0,Comilla,Bangladesh,Bangladesh,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Comilla is not in Bangladesh. This statement is:"
+961,The city of Amravati is not in China.,1,Amravati,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Amravati is not in China. This statement is:"
+1104,The city of Bangkok is in Thailand.,1,Bangkok,Thailand,Thailand,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bangkok is in Thailand. This statement is:"
+455,The city of Shihezi is in Russia.,0,Shihezi,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shihezi is in Russia. This statement is:"
+635,The city of Astrakhan is not in India.,1,Astrakhan,India,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Astrakhan is not in India. This statement is:"
+1075,The city of Abu Ghurayb is in Indonesia.,0,Abu Ghurayb,Indonesia,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abu Ghurayb is in Indonesia. This statement is:"
+1188,The city of Surat is in India.,1,Surat,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Surat is in India. This statement is:"
+348,The city of Shangqiu is in China.,1,Shangqiu,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shangqiu is in China. This statement is:"
+757,The city of Chiclayo is in Venezuela.,0,Chiclayo,Venezuela,Peru,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chiclayo is in Venezuela. This statement is:"
+1255,The city of Chongqing is in Sweden.,0,Chongqing,Sweden,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chongqing is in Sweden. This statement is:"
+990,The city of Samarinda is not in Indonesia.,0,Samarinda,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Samarinda is not in Indonesia. This statement is:"
+1461,The city of Reynosa is in China.,0,Reynosa,China,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Reynosa is in China. This statement is:"
+843,The city of Latakia is in Somalia.,0,Latakia,Somalia,Syria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Latakia is in Somalia. This statement is:"
+626,The city of Seoul is not in South Korea.,0,Seoul,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Seoul is not in South Korea. This statement is:"
+828,The city of Ma'anshan is not in China.,0,Ma'anshan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ma'anshan is not in China. This statement is:"
+1110,The city of Madinat an Nasr is not in Egypt.,0,Madinat an Nasr,Egypt,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Madinat an Nasr is not in Egypt. This statement is:"
+133,The city of Changwon is not in Indonesia.,1,Changwon,Indonesia,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Changwon is not in Indonesia. This statement is:"
+1243,The city of Suining is not in Algeria.,1,Suining,Algeria,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Suining is not in Algeria. This statement is:"
+1195,The city of Bikaner is in South Korea.,0,Bikaner,South Korea,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bikaner is in South Korea. This statement is:"
+141,The city of Basrah is not in China.,1,Basrah,China,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Basrah is not in China. This statement is:"
+1493,The city of Al Mawsil al Jadidah is not in India.,1,Al Mawsil al Jadidah,India,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Mawsil al Jadidah is not in India. This statement is:"
+392,The city of Pyongyang is in North Korea.,1,Pyongyang,North Korea,North Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Pyongyang is in North Korea. This statement is:"
+474,The city of Ya'an is not in China.,0,Ya'an,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ya'an is not in China. This statement is:"
+295,The city of Libreville is not in the United States.,1,Libreville,the United States,Gabon,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Libreville is not in the United States. This statement is:"
+452,The city of Abobo is not in Côte d'Ivoire.,0,Abobo,Côte d'Ivoire,Côte d'Ivoire,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abobo is not in Côte d'Ivoire. This statement is:"
+1316,The city of Kandahar is in Afghanistan.,1,Kandahar,Afghanistan,Afghanistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kandahar is in Afghanistan. This statement is:"
+1146,The city of Dhanbad is in India.,1,Dhanbad,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dhanbad is in India. This statement is:"
+1379,The city of Tangier is not in Ecuador.,1,Tangier,Ecuador,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tangier is not in Ecuador. This statement is:"
+1191,The city of Barnaul is not in South Africa.,1,Barnaul,South Africa,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Barnaul is not in South Africa. This statement is:"
+1225,The city of Shangyu is not in the United Arab Emirates.,1,Shangyu,the United Arab Emirates,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shangyu is not in the United Arab Emirates. This statement is:"
+1420,The city of Bujumbura is in Burundi.,1,Bujumbura,Burundi,Burundi,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bujumbura is in Burundi. This statement is:"
+1186,The city of Fes is in Morocco.,1,Fes,Morocco,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Fes is in Morocco. This statement is:"
+1252,The city of Dalian is not in China.,0,Dalian,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dalian is not in China. This statement is:"
+18,The city of Lu'an is in China.,1,Lu'an,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lu'an is in China. This statement is:"
+507,The city of Chattogram is in China.,0,Chattogram,China,Bangladesh,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chattogram is in China. This statement is:"
+303,The city of Karol Bagh is not in Syria.,1,Karol Bagh,Syria,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Karol Bagh is not in Syria. This statement is:"
+694,The city of Lubumbashi is not in the Democratic Republic of the Congo.,0,Lubumbashi,the Democratic Republic of the Congo,the Democratic Republic of the Congo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lubumbashi is not in the Democratic Republic of the Congo. This statement is:"
+1307,The city of Chenzhou is not in Brazil.,1,Chenzhou,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chenzhou is not in Brazil. This statement is:"
+191,The city of Lyon is not in Canada.,1,Lyon,Canada,France,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lyon is not in Canada. This statement is:"
+670,The city of Semarang is in Indonesia.,1,Semarang,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Semarang is in Indonesia. This statement is:"
+788,The city of Port Said is not in Egypt.,0,Port Said,Egypt,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Port Said is not in Egypt. This statement is:"
+1308,The city of Baise is in China.,1,Baise,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Baise is in China. This statement is:"
+1233,The city of Bulawayo is in China.,0,Bulawayo,China,Zimbabwe,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bulawayo is in China. This statement is:"
+1401,The city of Xingtai is not in Russia.,1,Xingtai,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xingtai is not in Russia. This statement is:"
+1452,The city of Maiduguri is in Nigeria.,1,Maiduguri,Nigeria,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Maiduguri is in Nigeria. This statement is:"
+1188,The city of Surat is not in India.,0,Surat,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Surat is not in India. This statement is:"
+1113,The city of Yibin is not in Brazil.,1,Yibin,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yibin is not in Brazil. This statement is:"
+529,The city of Bursa is not in Bosnia and Herzegovina.,1,Bursa,Bosnia and Herzegovina,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bursa is not in Bosnia and Herzegovina. This statement is:"
+490,The city of Albuquerque is not in the United States.,0,Albuquerque,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Albuquerque is not in the United States. This statement is:"
+663,The city of Guwahati is in China.,0,Guwahati,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guwahati is in China. This statement is:"
+730,The city of Cimahi is not in Indonesia.,0,Cimahi,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cimahi is not in Indonesia. This statement is:"
+1348,The city of Gujranwala is in Pakistan.,1,Gujranwala,Pakistan,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Gujranwala is in Pakistan. This statement is:"
+194,The city of Giza is in Egypt.,1,Giza,Egypt,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Giza is in Egypt. This statement is:"
+777,The city of Bayannur is not in Russia.,1,Bayannur,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bayannur is not in Russia. This statement is:"
+1265,The city of Bishkek is in Germany.,0,Bishkek,Germany,Kyrgyzstan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bishkek is in Germany. This statement is:"
+193,The city of Suez is not in Brazil.,1,Suez,Brazil,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Suez is not in Brazil. This statement is:"
+332,The city of Balikpapan is in Indonesia.,1,Balikpapan,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Balikpapan is in Indonesia. This statement is:"
+183,The city of Porto Velho is in Algeria.,0,Porto Velho,Algeria,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Porto Velho is in Algeria. This statement is:"
+1041,The city of Asansol is in China.,0,Asansol,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Asansol is in China. This statement is:"
+383,The city of Oyo is not in China.,1,Oyo,China,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Oyo is not in China. This statement is:"
+1170,The city of Bhiwandi is in India.,1,Bhiwandi,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bhiwandi is in India. This statement is:"
+1203,The city of Thuan An is in Mozambique.,0,Thuan An,Mozambique,Vietnam,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Thuan An is in Mozambique. This statement is:"
+1120,The city of Jiujiang is in China.,1,Jiujiang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiujiang is in China. This statement is:"
+785,The city of Recife is not in North Korea.,1,Recife,North Korea,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Recife is not in North Korea. This statement is:"
+464,The city of Taiz is in Yemen.,1,Taiz,Yemen,Yemen,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Taiz is in Yemen. This statement is:"
+1136,The city of Sargodha is not in Pakistan.,0,Sargodha,Pakistan,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sargodha is not in Pakistan. This statement is:"
+641,The city of Saint Petersburg is not in Canada.,1,Saint Petersburg,Canada,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Saint Petersburg is not in Canada. This statement is:"
+117,The city of Hohhot is in Indonesia.,0,Hohhot,Indonesia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hohhot is in Indonesia. This statement is:"
+577,The city of Luohe is in Brazil.,0,Luohe,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Luohe is in Brazil. This statement is:"
+445,The city of Bandar Lampung is in South Africa.,0,Bandar Lampung,South Africa,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bandar Lampung is in South Africa. This statement is:"
+84,The city of Niamey is not in Niger.,0,Niamey,Niger,Niger,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Niamey is not in Niger. This statement is:"
+548,The city of Sapporo is in Japan.,1,Sapporo,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sapporo is in Japan. This statement is:"
+10,The city of Addis Ababa is not in Ethiopia.,0,Addis Ababa,Ethiopia,Ethiopia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Addis Ababa is not in Ethiopia. This statement is:"
+993,The city of Helsinki is in Pakistan.,0,Helsinki,Pakistan,Finland,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Helsinki is in Pakistan. This statement is:"
+912,The city of Riga is not in Latvia.,0,Riga,Latvia,Latvia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Riga is not in Latvia. This statement is:"
+698,The city of Cotonou is not in Benin.,0,Cotonou,Benin,Benin,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cotonou is not in Benin. This statement is:"
+1034,The city of Chisinau is in Moldova.,1,Chisinau,Moldova,Moldova,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chisinau is in Moldova. This statement is:"
+520,The city of Pimpri is in India.,1,Pimpri,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Pimpri is in India. This statement is:"
+971,The city of Barquisimeto is in Poland.,0,Barquisimeto,Poland,Venezuela,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Barquisimeto is in Poland. This statement is:"
+290,The city of Khabarovsk is in Russia.,1,Khabarovsk,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Khabarovsk is in Russia. This statement is:"
+1249,The city of Jinan is in Rwanda.,0,Jinan,Rwanda,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jinan is in Rwanda. This statement is:"
+906,The city of Koeln is in Germany.,1,Koeln,Germany,Germany,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Koeln is in Germany. This statement is:"
+777,The city of Bayannur is in Russia.,0,Bayannur,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bayannur is in Russia. This statement is:"
+923,The city of Bekasi is not in China.,1,Bekasi,China,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bekasi is not in China. This statement is:"
+890,The city of Sanya is in China.,1,Sanya,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sanya is in China. This statement is:"
+313,The city of Shaoguan is not in Pakistan.,1,Shaoguan,Pakistan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shaoguan is not in Pakistan. This statement is:"
+642,The city of Johannesburg is in South Africa.,1,Johannesburg,South Africa,South Africa,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Johannesburg is in South Africa. This statement is:"
+288,The city of Dnipro is not in Ukraine.,0,Dnipro,Ukraine,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dnipro is not in Ukraine. This statement is:"
+848,The city of Erode is in India.,1,Erode,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Erode is in India. This statement is:"
+201,The city of Harare is not in Turkey.,1,Harare,Turkey,Zimbabwe,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Harare is not in Turkey. This statement is:"
+595,The city of Kashgar is not in Turkey.,1,Kashgar,Turkey,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kashgar is not in Turkey. This statement is:"
+733,The city of Arequipa is not in India.,1,Arequipa,India,Peru,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Arequipa is not in India. This statement is:"
+1244,The city of Guankou is in China.,1,Guankou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guankou is in China. This statement is:"
+767,The city of Narela is not in Turkey.,1,Narela,Turkey,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Narela is not in Turkey. This statement is:"
+902,The city of Guayaquil is in Ecuador.,1,Guayaquil,Ecuador,Ecuador,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guayaquil is in Ecuador. This statement is:"
+591,The city of Malang is not in Morocco.,1,Malang,Morocco,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Malang is not in Morocco. This statement is:"
+37,The city of Mombasa is not in India.,1,Mombasa,India,Kenya,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mombasa is not in India. This statement is:"
+1295,The city of Tanggu is not in South Korea.,1,Tanggu,South Korea,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tanggu is not in South Korea. This statement is:"
+26,The city of Yingkou is in China.,1,Yingkou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yingkou is in China. This statement is:"
+553,The city of Cheonan is in Myanmar.,0,Cheonan,Myanmar,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cheonan is in Myanmar. This statement is:"
+236,The city of Aparecida de Goiania is not in Brazil.,0,Aparecida de Goiania,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Aparecida de Goiania is not in Brazil. This statement is:"
+163,The city of Izmir is in Iran.,0,Izmir,Iran,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Izmir is in Iran. This statement is:"
+561,The city of General Santos is not in China.,1,General Santos,China,the Philippines,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of General Santos is not in China. This statement is:"
+1274,The city of Cuttack is in India.,1,Cuttack,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cuttack is in India. This statement is:"
+1324,The city of Hiroshima is in Japan.,1,Hiroshima,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hiroshima is in Japan. This statement is:"
+149,The city of Naucalpan de Juarez is not in Honduras.,1,Naucalpan de Juarez,Honduras,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Naucalpan de Juarez is not in Honduras. This statement is:"
+1157,The city of Kota Kinabalu is not in the United States.,1,Kota Kinabalu,the United States,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kota Kinabalu is not in the United States. This statement is:"
+184,The city of N'Djamena is in Chad.,1,N'Djamena,Chad,Chad,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of N'Djamena is in Chad. This statement is:"
+937,The city of Abeokuta is in Mozambique.,0,Abeokuta,Mozambique,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abeokuta is in Mozambique. This statement is:"
+91,The city of South Tangerang is in India.,0,South Tangerang,India,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of South Tangerang is in India. This statement is:"
+1147,The city of Dhanbad is in Kenya.,0,Dhanbad,Kenya,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dhanbad is in Kenya. This statement is:"
+1094,The city of The Bronx is not in the United States.,0,The Bronx,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of The Bronx is not in the United States. This statement is:"
+299,The city of Algiers is not in China.,1,Algiers,China,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Algiers is not in China. This statement is:"
+79,The city of Chaozhou is in South Korea.,0,Chaozhou,South Korea,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chaozhou is in South Korea. This statement is:"
+1210,The city of Abu Dhabi is in the United Arab Emirates.,1,Abu Dhabi,the United Arab Emirates,the United Arab Emirates,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abu Dhabi is in the United Arab Emirates. This statement is:"
+333,The city of Balikpapan is not in Japan.,1,Balikpapan,Japan,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Balikpapan is not in Japan. This statement is:"
+304,The city of Orumiyeh is not in Iran.,0,Orumiyeh,Iran,Iran,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Orumiyeh is not in Iran. This statement is:"
+623,The city of Himeji is in the Democratic Republic of the Congo.,0,Himeji,the Democratic Republic of the Congo,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Himeji is in the Democratic Republic of the Congo. This statement is:"
+889,The city of Yangquan is in Hungary.,0,Yangquan,Hungary,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yangquan is in Hungary. This statement is:"
+1494,The city of Tangerang is in Indonesia.,1,Tangerang,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tangerang is in Indonesia. This statement is:"
+269,The city of Al Fayyum is not in Chile.,1,Al Fayyum,Chile,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Fayyum is not in Chile. This statement is:"
+1335,The city of Coimbatore is in Malaysia.,0,Coimbatore,Malaysia,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Coimbatore is in Malaysia. This statement is:"
+1088,The city of Curitiba is in Brazil.,1,Curitiba,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Curitiba is in Brazil. This statement is:"
+1407,The city of Huainan is not in Egypt.,1,Huainan,Egypt,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Huainan is not in Egypt. This statement is:"
+1400,The city of Xingtai is in China.,1,Xingtai,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xingtai is in China. This statement is:"
+1226,The city of Jambi City is not in Indonesia.,0,Jambi City,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jambi City is not in Indonesia. This statement is:"
+1453,The city of Maiduguri is in China.,0,Maiduguri,China,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Maiduguri is in China. This statement is:"
+69,The city of Borivli is in Ukraine.,0,Borivli,Ukraine,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Borivli is in Ukraine. This statement is:"
+142,The city of Qom is not in Iran.,0,Qom,Iran,Iran,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Qom is not in Iran. This statement is:"
+755,The city of Kobe is not in China.,1,Kobe,China,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kobe is not in China. This statement is:"
+390,The city of New Kingston is in Jamaica.,1,New Kingston,Jamaica,Jamaica,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of New Kingston is in Jamaica. This statement is:"
+837,The city of Rangpur is in Russia.,0,Rangpur,Russia,Bangladesh,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Rangpur is in Russia. This statement is:"
+748,The city of Kitakyushu is not in Japan.,0,Kitakyushu,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kitakyushu is not in Japan. This statement is:"
+696,The city of San Miguel de Tucuman is not in Argentina.,0,San Miguel de Tucuman,Argentina,Argentina,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of San Miguel de Tucuman is not in Argentina. This statement is:"
+161,The city of Novokuznetsk is in China.,0,Novokuznetsk,China,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Novokuznetsk is in China. This statement is:"
+1321,The city of Ouagadougou is not in China.,1,Ouagadougou,China,Burkina Faso,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ouagadougou is not in China. This statement is:"
+615,The city of Penza is in China.,0,Penza,China,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Penza is in China. This statement is:"
+493,The city of New South Memphis is not in China.,1,New South Memphis,China,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of New South Memphis is not in China. This statement is:"
+1121,The city of Jiujiang is in Indonesia.,0,Jiujiang,Indonesia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiujiang is in Indonesia. This statement is:"
+443,The city of Tolyatti is in Ghana.,0,Tolyatti,Ghana,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tolyatti is in Ghana. This statement is:"
+1067,The city of Port Harcourt is in Eritrea.,0,Port Harcourt,Eritrea,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Port Harcourt is in Eritrea. This statement is:"
+1099,The city of Da Nang is not in China.,1,Da Nang,China,Vietnam,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Da Nang is not in China. This statement is:"
+268,The city of Al Fayyum is in Egypt.,1,Al Fayyum,Egypt,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Fayyum is in Egypt. This statement is:"
+946,The city of Meknes is in Morocco.,1,Meknes,Morocco,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Meknes is in Morocco. This statement is:"
+505,The city of Cuiaba is not in Latvia.,1,Cuiaba,Latvia,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cuiaba is not in Latvia. This statement is:"
+1490,The city of Kirkuk is not in Iraq.,0,Kirkuk,Iraq,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kirkuk is not in Iraq. This statement is:"
+951,The city of Kalyan is not in South Korea.,1,Kalyan,South Korea,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kalyan is not in South Korea. This statement is:"
+1090,The city of Rio de Janeiro is in Brazil.,1,Rio de Janeiro,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Rio de Janeiro is in Brazil. This statement is:"
+1267,The city of Muzaffarabad is in China.,0,Muzaffarabad,China,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Muzaffarabad is in China. This statement is:"
+7,The city of Baku is in Ukraine.,0,Baku,Ukraine,Azerbaijan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Baku is in Ukraine. This statement is:"
+799,The city of Shanghai is in Mexico.,0,Shanghai,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shanghai is in Mexico. This statement is:"
+254,The city of Daegu is not in South Korea.,0,Daegu,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Daegu is not in South Korea. This statement is:"
+1260,The city of Klang is in Malaysia.,1,Klang,Malaysia,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Klang is in Malaysia. This statement is:"
+400,The city of Zaporizhzhya is in Ukraine.,1,Zaporizhzhya,Ukraine,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zaporizhzhya is in Ukraine. This statement is:"
+1442,The city of Ha'il is not in Saudi Arabia.,0,Ha'il,Saudi Arabia,Saudi Arabia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ha'il is not in Saudi Arabia. This statement is:"
+1087,The city of Uberlandia is in India.,0,Uberlandia,India,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Uberlandia is in India. This statement is:"
+1494,The city of Tangerang is not in Indonesia.,0,Tangerang,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tangerang is not in Indonesia. This statement is:"
+231,The city of Yiwu is not in India.,1,Yiwu,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yiwu is not in India. This statement is:"
+52,The city of Serang is not in Indonesia.,0,Serang,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Serang is not in Indonesia. This statement is:"
+439,The city of Al Basrah al Qadimah is in China.,0,Al Basrah al Qadimah,China,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Basrah al Qadimah is in China. This statement is:"
+1354,The city of Xianning is in China.,1,Xianning,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xianning is in China. This statement is:"
+1456,The city of Kathmandu is in Nepal.,1,Kathmandu,Nepal,Nepal,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kathmandu is in Nepal. This statement is:"
+859,The city of Banjarmasin is not in South Korea.,1,Banjarmasin,South Korea,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Banjarmasin is not in South Korea. This statement is:"
+801,The city of Jieyang is in the Philippines.,0,Jieyang,the Philippines,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jieyang is in the Philippines. This statement is:"
+1123,The city of Jiaozuo is not in Bangladesh.,1,Jiaozuo,Bangladesh,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiaozuo is not in Bangladesh. This statement is:"
+770,The city of Chennai is in India.,1,Chennai,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chennai is in India. This statement is:"
+56,The city of Marrakesh is not in Morocco.,0,Marrakesh,Morocco,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Marrakesh is not in Morocco. This statement is:"
+1370,The city of Bien Hoa is in Vietnam.,1,Bien Hoa,Vietnam,Vietnam,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bien Hoa is in Vietnam. This statement is:"
+623,The city of Himeji is not in the Democratic Republic of the Congo.,1,Himeji,the Democratic Republic of the Congo,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Himeji is not in the Democratic Republic of the Congo. This statement is:"
+1471,The city of Weinan is in Colombia.,0,Weinan,Colombia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Weinan is in Colombia. This statement is:"
+1264,The city of Bishkek is not in Kyrgyzstan.,0,Bishkek,Kyrgyzstan,Kyrgyzstan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bishkek is not in Kyrgyzstan. This statement is:"
+323,The city of Agadir is in Bangladesh.,0,Agadir,Bangladesh,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Agadir is in Bangladesh. This statement is:"
+892,The city of Foshan is not in China.,0,Foshan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Foshan is not in China. This statement is:"
+1100,The city of Tomsk is not in Russia.,0,Tomsk,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tomsk is not in Russia. This statement is:"
+862,The city of Adana is not in Turkey.,0,Adana,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Adana is not in Turkey. This statement is:"
+96,The city of Boumerdes is in Algeria.,1,Boumerdes,Algeria,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Boumerdes is in Algeria. This statement is:"
+596,The city of Zibo is in China.,1,Zibo,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zibo is in China. This statement is:"
+1469,The city of Xinyang is not in Japan.,1,Xinyang,Japan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xinyang is not in Japan. This statement is:"
+831,The city of Dongying is not in India.,1,Dongying,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dongying is not in India. This statement is:"
+1096,The city of Samarkand is in Uzbekistan.,1,Samarkand,Uzbekistan,Uzbekistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Samarkand is in Uzbekistan. This statement is:"
+652,The city of Yangjiang is in China.,1,Yangjiang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yangjiang is in China. This statement is:"
+351,The city of Zhangye is in Venezuela.,0,Zhangye,Venezuela,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhangye is in Venezuela. This statement is:"
+209,The city of Callao is in Myanmar.,0,Callao,Myanmar,Peru,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Callao is in Myanmar. This statement is:"
+441,The city of Krakow is in South Korea.,0,Krakow,South Korea,Poland,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Krakow is in South Korea. This statement is:"
+627,The city of Seoul is in Nicaragua.,0,Seoul,Nicaragua,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Seoul is in Nicaragua. This statement is:"
+833,The city of Fushun is not in Mexico.,1,Fushun,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Fushun is not in Mexico. This statement is:"
+921,The city of Kallakurichi is in Iraq.,0,Kallakurichi,Iraq,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kallakurichi is in Iraq. This statement is:"
+1171,The city of Bhiwandi is not in China.,1,Bhiwandi,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bhiwandi is not in China. This statement is:"
+63,The city of Thane is not in China.,1,Thane,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Thane is not in China. This statement is:"
+1092,The city of Ribeirao Preto is in Brazil.,1,Ribeirao Preto,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ribeirao Preto is in Brazil. This statement is:"
+238,The city of Kinshasa is in the Democratic Republic of the Congo.,1,Kinshasa,the Democratic Republic of the Congo,the Democratic Republic of the Congo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kinshasa is in the Democratic Republic of the Congo. This statement is:"
+321,The city of Kakamega is not in Russia.,1,Kakamega,Russia,Kenya,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kakamega is not in Russia. This statement is:"
+528,The city of Bursa is not in Turkey.,0,Bursa,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bursa is not in Turkey. This statement is:"
+115,The city of Linyi is in Iraq.,0,Linyi,Iraq,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Linyi is in Iraq. This statement is:"
+1337,The city of Chandigarh is not in China.,1,Chandigarh,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chandigarh is not in China. This statement is:"
+198,The city of Mukalla is not in Yemen.,0,Mukalla,Yemen,Yemen,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mukalla is not in Yemen. This statement is:"
+982,The city of Huzhou is not in China.,0,Huzhou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Huzhou is not in China. This statement is:"
+1451,The city of Kuantan is not in India.,1,Kuantan,India,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kuantan is not in India. This statement is:"
+369,The city of Hegang is in Russia.,0,Hegang,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hegang is in Russia. This statement is:"
+496,The city of Kisangani is not in the Democratic Republic of the Congo.,0,Kisangani,the Democratic Republic of the Congo,the Democratic Republic of the Congo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kisangani is not in the Democratic Republic of the Congo. This statement is:"
+1286,The city of Asuncion is not in Paraguay.,0,Asuncion,Paraguay,Paraguay,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Asuncion is not in Paraguay. This statement is:"
+1195,The city of Bikaner is not in South Korea.,1,Bikaner,South Korea,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bikaner is not in South Korea. This statement is:"
+23,The city of Huaihua is in South Africa.,0,Huaihua,South Africa,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Huaihua is in South Africa. This statement is:"
+351,The city of Zhangye is not in Venezuela.,1,Zhangye,Venezuela,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhangye is not in Venezuela. This statement is:"
+1212,The city of Sao Paulo is not in Brazil.,0,Sao Paulo,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sao Paulo is not in Brazil. This statement is:"
+1193,The city of Buraydah is not in Rwanda.,1,Buraydah,Rwanda,Saudi Arabia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Buraydah is not in Rwanda. This statement is:"
+965,The city of Lome is in Yemen.,0,Lome,Yemen,Togo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lome is in Yemen. This statement is:"
+309,The city of Xuchang is not in Japan.,1,Xuchang,Japan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xuchang is not in Japan. This statement is:"
+644,The city of Wanzhou is not in China.,0,Wanzhou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Wanzhou is not in China. This statement is:"
+97,The city of Boumerdes is not in Iran.,1,Boumerdes,Iran,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Boumerdes is not in Iran. This statement is:"
+82,The city of Bucaramanga is in Colombia.,1,Bucaramanga,Colombia,Colombia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bucaramanga is in Colombia. This statement is:"
+1185,The city of Leon de los Aldama is not in China.,1,Leon de los Aldama,China,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Leon de los Aldama is not in China. This statement is:"
+628,The city of Meerut is not in India.,0,Meerut,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Meerut is not in India. This statement is:"
+1443,The city of Ha'il is not in China.,1,Ha'il,China,Saudi Arabia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ha'il is not in China. This statement is:"
+714,The city of Beirut is not in Lebanon.,0,Beirut,Lebanon,Lebanon,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Beirut is not in Lebanon. This statement is:"
+1475,The city of Shijiazhuang is in Uzbekistan.,0,Shijiazhuang,Uzbekistan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shijiazhuang is in Uzbekistan. This statement is:"
+278,The city of Accra is in Ghana.,1,Accra,Ghana,Ghana,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Accra is in Ghana. This statement is:"
+1073,The city of Madurai is not in Burundi.,1,Madurai,Burundi,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Madurai is not in Burundi. This statement is:"
+490,The city of Albuquerque is in the United States.,1,Albuquerque,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Albuquerque is in the United States. This statement is:"
+1278,The city of Yekaterinburg is not in Russia.,0,Yekaterinburg,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yekaterinburg is not in Russia. This statement is:"
+1250,The city of Guigang is in China.,1,Guigang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guigang is in China. This statement is:"
+883,The city of Battagram is not in Tanzania.,1,Battagram,Tanzania,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Battagram is not in Tanzania. This statement is:"
+745,The city of Lviv is not in China.,1,Lviv,China,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lviv is not in China. This statement is:"
+894,The city of Sharjah is in the United Arab Emirates.,1,Sharjah,the United Arab Emirates,the United Arab Emirates,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sharjah is in the United Arab Emirates. This statement is:"
+388,The city of Bahawalpur is not in Pakistan.,0,Bahawalpur,Pakistan,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bahawalpur is not in Pakistan. This statement is:"
+1082,The city of Milwaukee is in the United States.,1,Milwaukee,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Milwaukee is in the United States. This statement is:"
+423,The city of Ahmedabad is not in China.,1,Ahmedabad,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ahmedabad is not in China. This statement is:"
+1364,The city of San Pedro Sula is not in Honduras.,0,San Pedro Sula,Honduras,Honduras,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of San Pedro Sula is not in Honduras. This statement is:"
+1251,The city of Guigang is not in Japan.,1,Guigang,Japan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guigang is not in Japan. This statement is:"
+724,The city of Conakry is not in Guinea.,0,Conakry,Guinea,Guinea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Conakry is not in Guinea. This statement is:"
+225,The city of Tangshan is not in India.,1,Tangshan,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tangshan is not in India. This statement is:"
+809,The city of Lusaka is in Poland.,0,Lusaka,Poland,Zambia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lusaka is in Poland. This statement is:"
+637,The city of Aleppo is in China.,0,Aleppo,China,Syria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Aleppo is in China. This statement is:"
+1313,The city of Daqing is in Brazil.,0,Daqing,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Daqing is in Brazil. This statement is:"
+1060,The city of Dakar is not in Senegal.,0,Dakar,Senegal,Senegal,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dakar is not in Senegal. This statement is:"
+980,The city of Puning is in China.,1,Puning,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Puning is in China. This statement is:"
+1458,The city of Las Pinas is not in the Philippines.,0,Las Pinas,the Philippines,the Philippines,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Las Pinas is not in the Philippines. This statement is:"
+1314,The city of Brasilia is not in Brazil.,0,Brasilia,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Brasilia is not in Brazil. This statement is:"
+865,The city of Voronezh is not in Romania.,1,Voronezh,Romania,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Voronezh is not in Romania. This statement is:"
+1398,The city of Shangrao is not in China.,0,Shangrao,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shangrao is not in China. This statement is:"
+399,The city of Kemerovo is in India.,0,Kemerovo,India,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kemerovo is in India. This statement is:"
+863,The city of Adana is not in Togo.,1,Adana,Togo,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Adana is not in Togo. This statement is:"
+175,The city of Shaoxing is not in the Philippines.,1,Shaoxing,the Philippines,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shaoxing is not in the Philippines. This statement is:"
+721,The city of Cancun is not in Myanmar.,1,Cancun,Myanmar,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cancun is not in Myanmar. This statement is:"
+1120,The city of Jiujiang is not in China.,0,Jiujiang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiujiang is not in China. This statement is:"
+202,The city of Sevastopol is in Ukraine.,1,Sevastopol,Ukraine,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sevastopol is in Ukraine. This statement is:"
+1070,The city of Thiruvananthapuram is not in India.,0,Thiruvananthapuram,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Thiruvananthapuram is not in India. This statement is:"
+736,The city of Bahcelievler is not in Turkey.,0,Bahcelievler,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bahcelievler is not in Turkey. This statement is:"
+1378,The city of Tangier is not in Morocco.,0,Tangier,Morocco,Morocco,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tangier is not in Morocco. This statement is:"
+210,The city of Cebu City is in the Philippines.,1,Cebu City,the Philippines,the Philippines,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cebu City is in the Philippines. This statement is:"
+508,The city of Nanjing is in China.,1,Nanjing,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nanjing is in China. This statement is:"
+406,The city of Kuala Lumpur is not in Malaysia.,0,Kuala Lumpur,Malaysia,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kuala Lumpur is not in Malaysia. This statement is:"
+361,The city of Liuzhou is not in Russia.,1,Liuzhou,Russia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Liuzhou is not in Russia. This statement is:"
+405,The city of Aguascalientes is in China.,0,Aguascalientes,China,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Aguascalientes is in China. This statement is:"
+252,The city of Kumamoto is not in Japan.,0,Kumamoto,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kumamoto is not in Japan. This statement is:"
+1100,The city of Tomsk is in Russia.,1,Tomsk,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tomsk is in Russia. This statement is:"
+1323,The city of Duque de Caxias is in Côte d'Ivoire.,0,Duque de Caxias,Côte d'Ivoire,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Duque de Caxias is in Côte d'Ivoire. This statement is:"
+72,The city of Liaocheng is in China.,1,Liaocheng,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Liaocheng is in China. This statement is:"
+533,The city of Mbuji-Mayi is not in Pakistan.,1,Mbuji-Mayi,Pakistan,the Democratic Republic of the Congo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mbuji-Mayi is not in Pakistan. This statement is:"
+494,The city of Calgary is in Canada.,1,Calgary,Canada,Canada,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Calgary is in Canada. This statement is:"
+572,The city of Zhanjiang is in China.,1,Zhanjiang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhanjiang is in China. This statement is:"
+1103,The city of Najran is not in India.,1,Najran,India,Saudi Arabia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Najran is not in India. This statement is:"
+901,The city of Mersin is not in the United States.,1,Mersin,the United States,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mersin is not in the United States. This statement is:"
+154,The city of Ahvaz is in Iran.,1,Ahvaz,Iran,Iran,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ahvaz is in Iran. This statement is:"
+933,The city of Sofia is not in South Korea.,1,Sofia,South Korea,Bulgaria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sofia is not in South Korea. This statement is:"
+1112,The city of Yibin is not in China.,0,Yibin,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yibin is not in China. This statement is:"
+630,The city of Hubli is not in India.,0,Hubli,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hubli is not in India. This statement is:"
+825,The city of Sanming is not in Bulgaria.,1,Sanming,Bulgaria,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sanming is not in Bulgaria. This statement is:"
+486,The city of Mississauga is in Canada.,1,Mississauga,Canada,Canada,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mississauga is in Canada. This statement is:"
+1413,The city of Quebec is not in Zimbabwe.,1,Quebec,Zimbabwe,Canada,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Quebec is not in Zimbabwe. This statement is:"
+898,The city of Kalininskiy is not in Russia.,0,Kalininskiy,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kalininskiy is not in Russia. This statement is:"
+1328,The city of Mandalay is not in Myanmar.,0,Mandalay,Myanmar,Myanmar,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mandalay is not in Myanmar. This statement is:"
+1235,The city of Santiago de Cuba is in India.,0,Santiago de Cuba,India,Cuba,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Santiago de Cuba is in India. This statement is:"
+44,The city of Nowrangapur is not in India.,0,Nowrangapur,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nowrangapur is not in India. This statement is:"
+662,The city of Guwahati is not in India.,0,Guwahati,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guwahati is not in India. This statement is:"
+1136,The city of Sargodha is in Pakistan.,1,Sargodha,Pakistan,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sargodha is in Pakistan. This statement is:"
+147,The city of Beira is in India.,0,Beira,India,Mozambique,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Beira is in India. This statement is:"
+568,The city of Indore is in India.,1,Indore,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Indore is in India. This statement is:"
+1355,The city of Xianning is not in Lebanon.,1,Xianning,Lebanon,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xianning is not in Lebanon. This statement is:"
+1458,The city of Las Pinas is in the Philippines.,1,Las Pinas,the Philippines,the Philippines,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Las Pinas is in the Philippines. This statement is:"
+987,The city of Chengdu is not in South Korea.,1,Chengdu,South Korea,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chengdu is not in South Korea. This statement is:"
+1284,The city of Gaziantep is not in Turkey.,0,Gaziantep,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Gaziantep is not in Turkey. This statement is:"
+1427,The city of Cankaya is in the United States.,0,Cankaya,the United States,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cankaya is in the United States. This statement is:"
+1289,The city of Tebessa is not in India.,1,Tebessa,India,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tebessa is not in India. This statement is:"
+463,The city of Chuzhou is not in India.,1,Chuzhou,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chuzhou is not in India. This statement is:"
+1384,The city of Faridabad is not in India.,0,Faridabad,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Faridabad is not in India. This statement is:"
+1482,The city of Varanasi is in India.,1,Varanasi,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Varanasi is in India. This statement is:"
+689,The city of Shuangyashan is not in India.,1,Shuangyashan,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shuangyashan is not in India. This statement is:"
+199,The city of Mukalla is in Iran.,0,Mukalla,Iran,Yemen,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mukalla is in Iran. This statement is:"
+971,The city of Barquisimeto is not in Poland.,1,Barquisimeto,Poland,Venezuela,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Barquisimeto is not in Poland. This statement is:"
+1412,The city of Quebec is in Canada.,1,Quebec,Canada,Canada,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Quebec is in Canada. This statement is:"
+784,The city of Recife is not in Brazil.,0,Recife,Brazil,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Recife is not in Brazil. This statement is:"
+234,The city of Baotou is in China.,1,Baotou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Baotou is in China. This statement is:"
+1411,The city of Fuxin is in Pakistan.,0,Fuxin,Pakistan,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Fuxin is in Pakistan. This statement is:"
+317,The city of Manaus is in Turkey.,0,Manaus,Turkey,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Manaus is in Turkey. This statement is:"
+1456,The city of Kathmandu is not in Nepal.,0,Kathmandu,Nepal,Nepal,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kathmandu is not in Nepal. This statement is:"
+246,The city of Kampung Baru Subang is in Malaysia.,1,Kampung Baru Subang,Malaysia,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kampung Baru Subang is in Malaysia. This statement is:"
+1422,The city of Ankara is in Turkey.,1,Ankara,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ankara is in Turkey. This statement is:"
+799,The city of Shanghai is not in Mexico.,1,Shanghai,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shanghai is not in Mexico. This statement is:"
+81,The city of Panzhihua is not in Iran.,1,Panzhihua,Iran,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Panzhihua is not in Iran. This statement is:"
+483,The city of Bengbu is in India.,0,Bengbu,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bengbu is in India. This statement is:"
+148,The city of Naucalpan de Juarez is not in Mexico.,0,Naucalpan de Juarez,Mexico,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Naucalpan de Juarez is not in Mexico. This statement is:"
+1350,The city of Nizhniy Novgorod is not in Russia.,0,Nizhniy Novgorod,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nizhniy Novgorod is not in Russia. This statement is:"
+245,The city of Ciudad Juarez is not in India.,1,Ciudad Juarez,India,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ciudad Juarez is not in India. This statement is:"
+1046,The city of Huangshi is in China.,1,Huangshi,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Huangshi is in China. This statement is:"
+674,The city of Korla is in China.,1,Korla,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Korla is in China. This statement is:"
+168,The city of Zhaotong is not in China.,0,Zhaotong,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhaotong is not in China. This statement is:"
+290,The city of Khabarovsk is not in Russia.,0,Khabarovsk,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Khabarovsk is not in Russia. This statement is:"
+28,The city of Panshan is not in China.,0,Panshan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Panshan is not in China. This statement is:"
+1336,The city of Chandigarh is not in India.,0,Chandigarh,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chandigarh is not in India. This statement is:"
+800,The city of Jieyang is not in China.,0,Jieyang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jieyang is not in China. This statement is:"
+371,The city of E'zhou is in Malaysia.,0,E'zhou,Malaysia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of E'zhou is in Malaysia. This statement is:"
+795,The city of Yinchuan is in Bangladesh.,0,Yinchuan,Bangladesh,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yinchuan is in Bangladesh. This statement is:"
+756,The city of Chiclayo is not in Peru.,0,Chiclayo,Peru,Peru,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chiclayo is not in Peru. This statement is:"
+1391,The city of Jakarta is in Colombia.,0,Jakarta,Colombia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jakarta is in Colombia. This statement is:"
+180,The city of Anshan is not in China.,0,Anshan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Anshan is not in China. This statement is:"
+124,The city of Matsuyama is in Japan.,1,Matsuyama,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Matsuyama is in Japan. This statement is:"
+1305,The city of Lanzhou is in Mexico.,0,Lanzhou,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lanzhou is in Mexico. This statement is:"
+745,The city of Lviv is in China.,0,Lviv,China,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lviv is in China. This statement is:"
+1091,The city of Rio de Janeiro is not in Japan.,1,Rio de Janeiro,Japan,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Rio de Janeiro is not in Japan. This statement is:"
+549,The city of Sapporo is in Mexico.,0,Sapporo,Mexico,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sapporo is in Mexico. This statement is:"
+6,The city of Baku is not in Azerbaijan.,0,Baku,Azerbaijan,Azerbaijan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Baku is not in Azerbaijan. This statement is:"
+1037,The city of Tiruppur is not in Japan.,1,Tiruppur,Japan,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tiruppur is not in Japan. This statement is:"
+927,The city of Santa Maria Chimalhuacan is not in Saudi Arabia.,1,Santa Maria Chimalhuacan,Saudi Arabia,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Santa Maria Chimalhuacan is not in Saudi Arabia. This statement is:"
+1347,The city of Khartoum is in China.,0,Khartoum,China,Sudan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Khartoum is in China. This statement is:"
+677,The city of Zaozhuang is in Belarus.,0,Zaozhuang,Belarus,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zaozhuang is in Belarus. This statement is:"
+1044,The city of Jingmen is not in China.,0,Jingmen,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jingmen is not in China. This statement is:"
+238,The city of Kinshasa is not in the Democratic Republic of the Congo.,0,Kinshasa,the Democratic Republic of the Congo,the Democratic Republic of the Congo,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kinshasa is not in the Democratic Republic of the Congo. This statement is:"
+1316,The city of Kandahar is not in Afghanistan.,0,Kandahar,Afghanistan,Afghanistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kandahar is not in Afghanistan. This statement is:"
+114,The city of Linyi is not in China.,0,Linyi,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Linyi is not in China. This statement is:"
+1276,The city of Makassar is not in Indonesia.,0,Makassar,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Makassar is not in Indonesia. This statement is:"
+31,The city of Guatemala City is not in Croatia.,1,Guatemala City,Croatia,Guatemala,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guatemala City is not in Croatia. This statement is:"
+138,The city of Mosul is not in Iraq.,0,Mosul,Iraq,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mosul is not in Iraq. This statement is:"
+237,The city of Aparecida de Goiania is not in China.,1,Aparecida de Goiania,China,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Aparecida de Goiania is not in China. This statement is:"
+613,The city of Hannover is not in China.,1,Hannover,China,Germany,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hannover is not in China. This statement is:"
+827,The city of Guang'an is in Germany.,0,Guang'an,Germany,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guang'an is in Germany. This statement is:"
+6,The city of Baku is in Azerbaijan.,1,Baku,Azerbaijan,Azerbaijan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Baku is in Azerbaijan. This statement is:"
+136,The city of Acapulco de Juarez is in Mexico.,1,Acapulco de Juarez,Mexico,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Acapulco de Juarez is in Mexico. This statement is:"
+159,The city of Palembang is in Brazil.,0,Palembang,Brazil,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Palembang is in Brazil. This statement is:"
+583,The city of Hanzhong is in Iran.,0,Hanzhong,Iran,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hanzhong is in Iran. This statement is:"
+1236,The city of Quito is in Ecuador.,1,Quito,Ecuador,Ecuador,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Quito is in Ecuador. This statement is:"
+12,The city of Abidjan is not in Côte d'Ivoire.,0,Abidjan,Côte d'Ivoire,Côte d'Ivoire,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abidjan is not in Côte d'Ivoire. This statement is:"
+1123,The city of Jiaozuo is in Bangladesh.,0,Jiaozuo,Bangladesh,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiaozuo is in Bangladesh. This statement is:"
+1435,The city of Tijuana is in the United Arab Emirates.,0,Tijuana,the United Arab Emirates,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tijuana is in the United Arab Emirates. This statement is:"
+389,The city of Bahawalpur is not in China.,1,Bahawalpur,China,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bahawalpur is not in China. This statement is:"
+233,The city of Qiqihar is not in India.,1,Qiqihar,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Qiqihar is not in India. This statement is:"
+1362,The city of Grosszschocher is in Germany.,1,Grosszschocher,Germany,Germany,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Grosszschocher is in Germany. This statement is:"
+1239,The city of Shubra al Khaymah is in Nigeria.,0,Shubra al Khaymah,Nigeria,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shubra al Khaymah is in Nigeria. This statement is:"
+1459,The city of Las Pinas is in Yemen.,0,Las Pinas,Yemen,the Philippines,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Las Pinas is in Yemen. This statement is:"
+1332,The city of Mysore is not in India.,0,Mysore,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mysore is not in India. This statement is:"
+760,The city of Nouakchott is in Mauritania.,1,Nouakchott,Mauritania,Mauritania,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nouakchott is in Mauritania. This statement is:"
+310,The city of Changde is in China.,1,Changde,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Changde is in China. This statement is:"
+1271,The city of Nagpur is not in Denmark.,1,Nagpur,Denmark,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nagpur is not in Denmark. This statement is:"
+851,The city of Mumbai is in China.,0,Mumbai,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mumbai is in China. This statement is:"
+568,The city of Indore is not in India.,0,Indore,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Indore is not in India. This statement is:"
+171,The city of Weifang is in Indonesia.,0,Weifang,Indonesia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Weifang is in Indonesia. This statement is:"
+475,The city of Ya'an is in Morocco.,0,Ya'an,Morocco,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ya'an is in Morocco. This statement is:"
+687,The city of Siping is not in Iraq.,1,Siping,Iraq,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Siping is not in Iraq. This statement is:"
+30,The city of Guatemala City is in Guatemala.,1,Guatemala City,Guatemala,Guatemala,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guatemala City is in Guatemala. This statement is:"
+713,The city of Al Ahmadi is not in Japan.,1,Al Ahmadi,Japan,Kuwait,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Al Ahmadi is not in Japan. This statement is:"
+178,The city of Mudanjiang is not in China.,0,Mudanjiang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mudanjiang is not in China. This statement is:"
+240,The city of Ciudad Nezahualcoyotl is not in Mexico.,0,Ciudad Nezahualcoyotl,Mexico,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ciudad Nezahualcoyotl is not in Mexico. This statement is:"
+1268,The city of Kotli is not in Pakistan.,0,Kotli,Pakistan,Pakistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kotli is not in Pakistan. This statement is:"
+1406,The city of Huainan is in China.,1,Huainan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Huainan is in China. This statement is:"
+877,The city of Turin is in China.,0,Turin,China,Italy,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Turin is in China. This statement is:"
+1408,The city of Binzhou is not in China.,0,Binzhou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Binzhou is not in China. This statement is:"
+1323,The city of Duque de Caxias is not in Côte d'Ivoire.,1,Duque de Caxias,Côte d'Ivoire,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Duque de Caxias is not in Côte d'Ivoire. This statement is:"
+1260,The city of Klang is not in Malaysia.,0,Klang,Malaysia,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Klang is not in Malaysia. This statement is:"
+47,The city of Sambhaji Nagar is in China.,0,Sambhaji Nagar,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sambhaji Nagar is in China. This statement is:"
+17,The city of Nanchong is not in Nigeria.,1,Nanchong,Nigeria,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nanchong is not in Nigeria. This statement is:"
+1339,The city of Amritsar is not in Moldova.,1,Amritsar,Moldova,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Amritsar is not in Moldova. This statement is:"
+1003,The city of Ryazan' is in South Korea.,0,Ryazan',South Korea,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ryazan' is in South Korea. This statement is:"
+862,The city of Adana is in Turkey.,1,Adana,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Adana is in Turkey. This statement is:"
+1059,The city of Pikine is in Pakistan.,0,Pikine,Pakistan,Senegal,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Pikine is in Pakistan. This statement is:"
+1474,The city of Shijiazhuang is in China.,1,Shijiazhuang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Shijiazhuang is in China. This statement is:"
+259,The city of Ranchi is in Venezuela.,0,Ranchi,Venezuela,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ranchi is in Venezuela. This statement is:"
+142,The city of Qom is in Iran.,1,Qom,Iran,Iran,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Qom is in Iran. This statement is:"
+471,The city of Zhumadian is in Brazil.,0,Zhumadian,Brazil,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhumadian is in Brazil. This statement is:"
+94,The city of Fort Worth is in the United States.,1,Fort Worth,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Fort Worth is in the United States. This statement is:"
+157,The city of Kumasi is in India.,0,Kumasi,India,Ghana,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kumasi is in India. This statement is:"
+1210,The city of Abu Dhabi is not in the United Arab Emirates.,0,Abu Dhabi,the United Arab Emirates,the United Arab Emirates,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abu Dhabi is not in the United Arab Emirates. This statement is:"
+519,The city of Almaty is not in Iraq.,1,Almaty,Iraq,Kazakhstan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Almaty is not in Iraq. This statement is:"
+422,The city of Ahmedabad is in India.,1,Ahmedabad,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ahmedabad is in India. This statement is:"
+156,The city of Kumasi is not in Ghana.,0,Kumasi,Ghana,Ghana,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kumasi is not in Ghana. This statement is:"
+365,The city of Bijie is in Indonesia.,0,Bijie,Indonesia,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bijie is in Indonesia. This statement is:"
+340,The city of Kota Bharu is not in Malaysia.,0,Kota Bharu,Malaysia,Malaysia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kota Bharu is not in Malaysia. This statement is:"
+123,The city of Seongnam-si is in Russia.,0,Seongnam-si,Russia,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Seongnam-si is in Russia. This statement is:"
+794,The city of Yinchuan is not in China.,0,Yinchuan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yinchuan is not in China. This statement is:"
+1122,The city of Jiaozuo is in China.,1,Jiaozuo,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiaozuo is in China. This statement is:"
+660,The city of Sangli is in India.,1,Sangli,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Sangli is in India. This statement is:"
+263,The city of Bhayandar is not in China.,1,Bhayandar,China,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bhayandar is not in China. This statement is:"
+699,The city of Cotonou is in China.,0,Cotonou,China,Benin,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cotonou is in China. This statement is:"
+275,The city of Jabalpur is in Ukraine.,0,Jabalpur,Ukraine,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jabalpur is in Ukraine. This statement is:"
+491,The city of Albuquerque is not in Egypt.,1,Albuquerque,Egypt,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Albuquerque is not in Egypt. This statement is:"
+1176,The city of Uskudar is not in Turkey.,0,Uskudar,Turkey,Turkey,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Uskudar is not in Turkey. This statement is:"
+1004,The city of Ciudad Guayana is not in Venezuela.,0,Ciudad Guayana,Venezuela,Venezuela,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ciudad Guayana is not in Venezuela. This statement is:"
+1248,The city of Jinan is not in China.,0,Jinan,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jinan is not in China. This statement is:"
+1183,The city of Mexico City is not in China.,1,Mexico City,China,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mexico City is not in China. This statement is:"
+170,The city of Weifang is in China.,1,Weifang,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Weifang is in China. This statement is:"
+128,The city of Incheon is in South Korea.,1,Incheon,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Incheon is in South Korea. This statement is:"
+335,The city of Guarulhos is not in China.,1,Guarulhos,China,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Guarulhos is not in China. This statement is:"
+160,The city of Novokuznetsk is not in Russia.,0,Novokuznetsk,Russia,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Novokuznetsk is not in Russia. This statement is:"
+429,The city of Omsk is in China.,0,Omsk,China,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Omsk is in China. This statement is:"
+1288,The city of Tebessa is not in Algeria.,0,Tebessa,Algeria,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Tebessa is not in Algeria. This statement is:"
+200,The city of Harare is in Zimbabwe.,1,Harare,Zimbabwe,Zimbabwe,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Harare is in Zimbabwe. This statement is:"
+408,The city of Warri is in Nigeria.,1,Warri,Nigeria,Nigeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Warri is in Nigeria. This statement is:"
+1290,The city of Zhuzhou is in China.,1,Zhuzhou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zhuzhou is in China. This statement is:"
+185,The city of N'Djamena is not in China.,1,N'Djamena,China,Chad,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of N'Djamena is not in China. This statement is:"
+1039,The city of Kozhikode is not in the United States.,1,Kozhikode,the United States,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kozhikode is not in the United States. This statement is:"
+13,The city of Abidjan is in China.,0,Abidjan,China,Côte d'Ivoire,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abidjan is in China. This statement is:"
+697,The city of San Miguel de Tucuman is in China.,0,San Miguel de Tucuman,China,Argentina,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of San Miguel de Tucuman is in China. This statement is:"
+244,The city of Ciudad Juarez is not in Mexico.,0,Ciudad Juarez,Mexico,Mexico,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ciudad Juarez is not in Mexico. This statement is:"
+233,The city of Qiqihar is in India.,0,Qiqihar,India,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Qiqihar is in India. This statement is:"
+184,The city of N'Djamena is not in Chad.,0,N'Djamena,Chad,Chad,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of N'Djamena is not in Chad. This statement is:"
+1491,The city of Kirkuk is in China.,0,Kirkuk,China,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kirkuk is in China. This statement is:"
+944,The city of Goyang-si is not in South Korea.,0,Goyang-si,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Goyang-si is not in South Korea. This statement is:"
+434,The city of Siliguri is not in India.,0,Siliguri,India,India,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Siliguri is not in India. This statement is:"
+96,The city of Boumerdes is not in Algeria.,0,Boumerdes,Algeria,Algeria,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Boumerdes is not in Algeria. This statement is:"
+294,The city of Libreville is in Gabon.,1,Libreville,Gabon,Gabon,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Libreville is in Gabon. This statement is:"
+1074,The city of Abu Ghurayb is in Iraq.,1,Abu Ghurayb,Iraq,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Abu Ghurayb is in Iraq. This statement is:"
+1091,The city of Rio de Janeiro is in Japan.,0,Rio de Janeiro,Japan,Brazil,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Rio de Janeiro is in Japan. This statement is:"
+810,The city of Aden is in Yemen.,1,Aden,Yemen,Yemen,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Aden is in Yemen. This statement is:"
+4,The city of Maracay is not in Venezuela.,0,Maracay,Venezuela,Venezuela,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Maracay is not in Venezuela. This statement is:"
+1325,The city of Hiroshima is in Malaysia.,0,Hiroshima,Malaysia,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Hiroshima is in Malaysia. This statement is:"
+687,The city of Siping is in Iraq.,0,Siping,Iraq,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Siping is in Iraq. This statement is:"
+999,The city of Oslo is not in Venezuela.,1,Oslo,Venezuela,Norway,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Oslo is not in Venezuela. This statement is:"
+633,The city of Dubai is not in the United States.,1,Dubai,the United States,the United Arab Emirates,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Dubai is not in the United States. This statement is:"
+441,The city of Krakow is not in South Korea.,1,Krakow,South Korea,Poland,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Krakow is not in South Korea. This statement is:"
+1080,The city of Chicago is in the United States.,1,Chicago,the United States,the United States,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chicago is in the United States. This statement is:"
+1363,The city of Grosszschocher is not in China.,1,Grosszschocher,China,Germany,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Grosszschocher is not in China. This statement is:"
+99,The city of Asmara is not in Indonesia.,1,Asmara,Indonesia,Eritrea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Asmara is not in Indonesia. This statement is:"
+412,The city of Kagoshima is in Japan.,1,Kagoshima,Japan,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Kagoshima is in Japan. This statement is:"
+1125,The city of Jiangmen is in South Korea.,0,Jiangmen,South Korea,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Jiangmen is in South Korea. This statement is:"
+219,The city of Xuzhou is in Mexico.,0,Xuzhou,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Xuzhou is in Mexico. This statement is:"
+125,The city of Matsuyama is not in Burkina Faso.,1,Matsuyama,Burkina Faso,Japan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Matsuyama is not in Burkina Faso. This statement is:"
+158,The city of Palembang is in Indonesia.,1,Palembang,Indonesia,Indonesia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Palembang is in Indonesia. This statement is:"
+1097,The city of Samarkand is in China.,0,Samarkand,China,Uzbekistan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Samarkand is in China. This statement is:"
+132,The city of Changwon is in South Korea.,1,Changwon,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Changwon is in South Korea. This statement is:"
+1306,The city of Chenzhou is in China.,1,Chenzhou,China,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Chenzhou is in China. This statement is:"
+552,The city of Cheonan is in South Korea.,1,Cheonan,South Korea,South Korea,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Cheonan is in South Korea. This statement is:"
+1381,The city of Nay Pyi Taw is not in Mozambique.,1,Nay Pyi Taw,Mozambique,Myanmar,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Nay Pyi Taw is not in Mozambique. This statement is:"
+1109,The city of Izhevsk is not in Nigeria.,1,Izhevsk,Nigeria,Russia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Izhevsk is not in Nigeria. This statement is:"
+2,The city of Lodz is not in Poland.,0,Lodz,Poland,Poland,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Lodz is not in Poland. This statement is:"
+1357,The city of Suqian is not in Mexico.,1,Suqian,Mexico,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Suqian is not in Mexico. This statement is:"
+139,The city of Mosul is in China.,0,Mosul,China,Iraq,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Mosul is in China. This statement is:"
+324,The city of Ulan Bator is in Mongolia.,1,Ulan Bator,Mongolia,Mongolia,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Ulan Bator is in Mongolia. This statement is:"
+1455,The city of Yangon is not in Kenya.,1,Yangon,Kenya,Myanmar,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Yangon is not in Kenya. This statement is:"
+498,The city of Bobo-Dioulasso is not in Burkina Faso.,0,Bobo-Dioulasso,Burkina Faso,Burkina Faso,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Bobo-Dioulasso is not in Burkina Faso. This statement is:"
+401,The city of Zaporizhzhya is in South Korea.,0,Zaporizhzhya,South Korea,Ukraine,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zaporizhzhya is in South Korea. This statement is:"
+195,The city of Giza is not in India.,1,Giza,India,Egypt,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Giza is not in India. This statement is:"
+571,The city of Zunyi is in Senegal.,0,Zunyi,Senegal,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Zunyi is in Senegal. This statement is:"
+519,The city of Almaty is in Iraq.,0,Almaty,Iraq,Kazakhstan,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Almaty is in Iraq. This statement is:"
+649,The city of Qinhuangdao is not in Eritrea.,1,Qinhuangdao,Eritrea,China,"The city of Oakland is not in the United States. This statement is: False
+The city of Canberra is in Australia. This statement is: True
+The city of Qinhuangdao is not in Eritrea. This statement is:"
