@@ -1,0 +1,4 @@
+Feature Type,Label,Average Cosine Similarity,Cosine Similarity Std
+sae_input,label,0.9532398947079976,0.006324749495654387
+sae_recons,label,0.9560107398033142,0.005871574307470801
+sae_diff,label,0.906074296037356,0.009717593135987067

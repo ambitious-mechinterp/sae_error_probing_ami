@@ -1,0 +1,4 @@
+Feature Type,Label,Average Cosine Similarity,Cosine Similarity Std
+sae_input,label,,
+sae_recons,label,,
+sae_diff,label,,
