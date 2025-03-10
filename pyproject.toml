@@ -32,4 +32,4 @@ known-first-party = ["sae_error_probing_ami"]
 force-sort-within-sections = true
 
 [tool.ruff.lint]
-ignore = ["F722"]
+ignore = ["F722","F821"]
