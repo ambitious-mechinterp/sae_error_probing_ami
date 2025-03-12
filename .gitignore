@@ -1,6 +1,5 @@
-#My stuff
-.Rhistory
-notebooks/random.ipynb
+# Data
+/data/
 
 # Mac OS-specific storage files
 .DS_Store
