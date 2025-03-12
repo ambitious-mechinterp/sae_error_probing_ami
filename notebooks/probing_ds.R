@@ -12,6 +12,7 @@ library(stringr)
 library(skimr)
 library(modelsummary)
 library(fixest)
+library(readr)
 myTheme <- theme(plot.title = element_text(size = 14),
                  panel.background = element_rect(fill = '#F2F2ED'),
                  axis.title = element_text(size = 10),
@@ -136,19 +137,27 @@ probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
 
 #Read in logistic regression results
 
-truth_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_truth.csv')
-truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes, save_fig = FALSE)
 
-headline_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_headline_fp.csv')
-headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes, save_fig = FALSE)
+
+
 
 manhattan_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_man_borough.csv')
 manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes, save_fig = FALSE)
 
-tw_happy <- read_csv("results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_twt_happy.csv")
+
+truth_probes <- read_csv('results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_truth.csv')
+truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes, save_fig = FALSE)
+
+headline_probes <- read_csv('results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_headline_fp.csv')
+headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes, save_fig = FALSE)
+
+manhattan_probes <- read_csv('results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_man_borough.csv')
+manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes, save_fig = FALSE)
+
+tw_happy <- read_csv("results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_twt_happy.csv")
 tw_happy_summary <- probe_summarizer('Probing for Happiness in Tweets', tw_happy, save_fig = FALSE)
 
-basketball <- read_csv("results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_ath_basketball.csv")
+basketball <- read_csv("results/logistic_meta_llama_Llama_3.1_8B_l19r_8x/probe_results_ath_basketball.csv")
 basketball_summary <- probe_summarizer('Probing for Basketball Atheletes', basketball, save_fig = FALSE)
 
 combined_plot <- truth_summary %>% mutate(Dataset = "Truth") %>% 
@@ -178,7 +187,7 @@ ggplot(combined_plot, aes(x = graph_labels,
         axis.ticks.x = element_blank(),
         legend.position = 'bottom') +  # Remove x-axis ticks
   scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
-ggsave("reports/figures/logistic_accuracy.png", width = 6, height = 4, scale = 1.6, dpi = 400)
+ggsave("reports/figures/logistic_accuracy_llama.png", width = 6, height = 4, scale = 1.6, dpi = 400)
 
 ggplot(combined_plot, aes(x = graph_labels, 
                           y = mean_test_ROC,
@@ -200,7 +209,7 @@ ggplot(combined_plot, aes(x = graph_labels,
         axis.ticks.x = element_blank(),
         legend.position = 'bottom') +  # Remove x-axis ticks
   scale_color_manual(values = c(nicepurp, niceblue, nicegreen))
-ggsave("reports/figures/logistic_roc_auc.png", width = 6, height = 4, scale = 1.2, dpi = 400)
+ggsave("reports/figures/logistic_roc_auc_llama.png", width = 6, height = 4, scale = 1.2, dpi = 400)
 
 pairwise_performance <- function(some_probes,n_sims = 100){
   colnames(some_probes) <- gsub(" ", "_", colnames(some_probes))

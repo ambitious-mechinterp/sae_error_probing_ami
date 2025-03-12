@@ -1,6 +1,13 @@
 #My stuff
 .Rhistory
 notebooks/random.ipynb
+models/
+results/
+
+sae_error_probing_ami/plot_patch_results.py 
+sae_error_probing_ami/train_probe.py 
+sae_error_probing_ami/probe_training_steering_old.py
+
 
 # Mac OS-specific storage files
 .DS_Store
