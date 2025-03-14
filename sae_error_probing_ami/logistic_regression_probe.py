@@ -831,6 +831,7 @@ if __name__ == "__main__":
     script_dir = Path(__file__).parent  # Directory of this script
     project_root = script_dir.parent  # Project root directory
 
+
     print("Setting up pipeline")
     device = t.device(args.device)
 

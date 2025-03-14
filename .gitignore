@@ -3,6 +3,7 @@
 notebooks/random.ipynb
 models/
 results/
+data/processed/tokenized_features/*
 
 sae_error_probing_ami/plot_patch_results.py 
 sae_error_probing_ami/train_probe.py 

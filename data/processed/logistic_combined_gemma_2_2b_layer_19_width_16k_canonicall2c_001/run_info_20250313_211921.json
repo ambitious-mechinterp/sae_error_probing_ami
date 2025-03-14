@@ -1,0 +1,37 @@
+{
+    "timestamp": "20250313_211921",
+    "run_time": "2025-03-13T21:19:21.000117",
+    "arguments": {
+        "model": "gemma-2-2b",
+        "layer": 19,
+        "sae_id": "layer_19/width_16k/canonical",
+        "sae_release": "gemma-scope-2b-pt-res-canonical",
+        "dataset": [
+            "26_headline_isfrontpage.csv",
+            "114_nyc_borough_Manhattan.csv",
+            "149_twt_emotion_happiness.csv"
+        ],
+        "label_column": "target",
+        "token_position_offset": 1,
+        "n_seeds": 100,
+        "save_probes_count": 0,
+        "k": [
+            25,
+            50,
+            150,
+            300
+        ],
+        "l1_regularization": 0.01,
+        "l2_regularization": 0.01,
+        "run_patching": false,
+        "result_suffix": [
+            "headline_fp",
+            "man_borough",
+            "twt_happy"
+        ],
+        "result_dir_suffix": "l2c_001",
+        "batch_size": 16,
+        "device": "cuda:0",
+        "epochs": 2
+    }
+}

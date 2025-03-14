@@ -876,6 +876,39 @@ if __name__ == "__main__":
         release=args.sae_release, sae_id=args.sae_id, device="cpu"
     )
     sae = sae.to(device)
+    # Create a timestamp for this run
+    import json
+    import datetime
+    
+    # Get current timestamp in a readable format
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Convert args to a dictionary
+    args_dict = vars(args)
+    
+    # Create a run info dictionary with timestamp and arguments
+    run_info = {
+        "timestamp": timestamp,
+        "run_time": datetime.datetime.now().isoformat(),
+        "arguments": args_dict
+    }
+    
+    # Ensure the results directory exists
+    model_sae_id = (
+        "logistic_combined_"
+        + args.model.replace("-", "_").replace("/", "_")
+        + "_"
+        + args.sae_id.replace("/", "_").replace("-", "_")
+    ) + args.result_dir_suffix
+    results_dir = project_root / "data" / "processed" / model_sae_id 
+    results_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Save the run info to a JSON file
+    run_info_path = results_dir / f"run_info_{timestamp}.json"
+    with open(run_info_path, "w") as f:
+        json.dump(run_info, f, indent=4, default=str)
+    
+    print(f"Run information saved to {run_info_path}")
 
     # Load model
     print("Loading model")
