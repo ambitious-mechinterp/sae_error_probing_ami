@@ -286,13 +286,12 @@ def combine_sae_and_error(
     train_error = features_map["sae_diff"][train_indices].to(device)
     test_error = features_map["sae_diff"][test_indices].to(device)
 
-    # Multiply the filtered activations by the corresponding decoder weights using einsum notation, then add the error
-    filtered_train = t.einsum(
-        "ij,jk->ik", train_acts_post[:, top_indices], sae.W_dec[top_indices, :]
-    )
-    filtered_test = t.einsum(
-        "ij,jk->ik", test_acts_post[:, top_indices], sae.W_dec[top_indices, :]
-    )
+    # Pre-extract the decoder weights for top indices to avoid repeated indexing
+    decoder_weights_subset = sae.W_dec[top_indices, :]
+    
+    # Use batched matrix multiplication which can be faster than einsum for large tensors
+    filtered_train = t.matmul(train_acts_post[:, top_indices], decoder_weights_subset)
+    filtered_test = t.matmul(test_acts_post[:, top_indices], decoder_weights_subset)
 
     train_combined = filtered_train + train_error
     test_combined = filtered_test + test_error
@@ -354,7 +353,7 @@ def save_probes_and_compute_similarities(
 
     with t.no_grad():
         print(
-            "Computing average cosine similarities across saved sae_acts_post probes and plotting coefficient bar chart..."
+            f"Computing average cosine similarities across saved {probe_type} probes..."
         )
         similarity_results = []
         weights_list = []
@@ -398,11 +397,17 @@ def save_probes_and_compute_similarities(
         similarities_df = pd.DataFrame(similarity_results)
         suffix = f"_{result_suffix}" if result_suffix else ""
         similarities_csv = results_dir / f"probe_similarities{suffix}.csv"
-        similarities_df.to_csv(similarities_csv, index=False)
+        
+        # If file exists, append to it, otherwise create new
+        if similarities_csv.exists():
+            existing_df = pd.read_csv(similarities_csv)
+            combined_df = pd.concat([existing_df, similarities_df], ignore_index=True)
+            combined_df.to_csv(similarities_csv, index=False)
+        else:
+            similarities_df.to_csv(similarities_csv, index=False)
 
         # Plot bar chart for average absolute coefficients of sae_acts_post probe
-        if probe_type == "sae_acts_post":
-            assert plot_dir is not None
+        if probe_type == "sae_acts_post" and plot_dir is not None:
             stacked_weights = t.stack(weights_list)  # shape: (n_saved, feature_dim)
             avg_abs = stacked_weights.abs().mean(dim=0).cpu().numpy()
             import matplotlib.pyplot as plt
@@ -426,7 +431,7 @@ def run_probing_pipeline(
     results_dir: Path,
     plot_dir: Path,
     sae: SAE,
-    k: int = 6,
+    k_values: list[int] = [100],  # Changed to list of k values
     epochs=2,
     batch_size=16,
     n_seeds=50,
@@ -436,13 +441,13 @@ def run_probing_pipeline(
     result_suffix="",
 ):
     """
-    Runs the complete probing pipeline with four probes:
+    Runs the complete probing pipeline with multiple probes:
       - Probe on the residual stream (from sae_input) [L2]
       - Probe on the reconstruction error (sae_diff) [L2]
       - Probe on the intermediate activations (sae_acts_post) [L1]
-      - Combined probe (sae_acts_and_error): computed by filtering sae_acts_post via the top-k
-        weight dimensions (from the L1 probe) through the decoder weights and adding sae_diff [L2]
-    Also computes cosine similarities among the three d_model probes.
+      - Combined probes (sae_acts_and_error) for each k value: computed by filtering sae_acts_post 
+        via the top-k weight dimensions (from the L1 probe) through the decoder weights and adding sae_diff [L2]
+    Also computes cosine similarities among the probes.
     Plots a bar chart of the absolute coefficients for the sae_acts_post probe.
     """
     models_dir.mkdir(parents=True, exist_ok=True)
@@ -505,46 +510,69 @@ def run_probing_pipeline(
                 with open(models_dir / model_filename, "wb") as f:
                     pickle.dump(probe, f)
 
-        # Create combined features (sae_acts_and_error) using top-k dimensions from the sae_acts_post probe
-        # Get top k indices by absolute value from the L1 probe's weight vector
-        topk = t.topk(l1_weight_vector.abs(), k) #type: ignore
-        top_indices = topk.indices  # A tensor containing the top-k indices
+        # Train combined probes for each k value
+        for k in k_values:
+            # Get top k indices by absolute value from the L1 probe's weight vector
+            topk = t.topk(l1_weight_vector.abs(), k) #type: ignore
+            top_indices = topk.indices  # A tensor containing the top-k indices
 
-        # Create combined features
-        train_combined, test_combined = combine_sae_and_error(
-            train_indices, test_indices, features_map, sae, device, top_indices
-        )
+            # Create combined features
+            train_combined, test_combined = combine_sae_and_error(
+                train_indices, test_indices, features_map, sae, device, top_indices
+            )
 
-        # Train combined probe
-        combined_probe, combined_result, combined_weight = train_and_evaluate_probe(
-            train_combined,
-            train_labels,
-            test_combined,
-            test_labels,
-            "sae_acts_and_error",
-            seed,
-            epochs,
-            batch_size,
-            l1_c,
-            l2_c,
-        )
-        if seed < save_probes_count:
-            model_filename = f"probe_sae_acts_and_error_seed_{seed}.pt"
-            with open(models_dir / model_filename, "wb") as f:
-                pickle.dump(combined_probe, f)
+            # Train combined probe with current k value
+            feature_type_k = f"sae_acts_and_error_k{k}"
+            combined_probe, combined_result, combined_weight = train_and_evaluate_probe(
+                train_combined,
+                train_labels,
+                test_combined,
+                test_labels,
+                feature_type_k,
+                seed,
+                epochs,
+                batch_size,
+                l1_c,
+                l2_c,
+            )
+            
+            if seed < save_probes_count:
+                model_filename = f"probe_{feature_type_k}_seed_{seed}.pt"
+                with open(models_dir / model_filename, "wb") as f:
+                    pickle.dump(combined_probe, f)
 
-        combined_result["Top_k_Indices"] = top_indices.tolist()
+            combined_result["Top_k_Indices"] = top_indices.tolist()
+            combined_result["k_value"] = k
 
-        weight_vectors["sae_acts_and_error"] = combined_weight
-        probes_for_label["sae_acts_and_error"] = combined_probe
-        temp_results["sae_acts_and_error"] = combined_result
+            weight_vectors[feature_type_k] = combined_weight
+            probes_for_label[feature_type_k] = combined_probe
+            temp_results[feature_type_k] = combined_result
 
-        # Compute cosine similarities among the three L2 probes
-        similarities = compute_cosine_similarities(weight_vectors)
+            # Compute cosine similarities between this k-value probe and the input/diff probes
+            k_similarities = {
+                f"Cosine_Sim_Input_{feature_type_k}": F.cosine_similarity(
+                    weight_vectors["sae_input"], combined_weight, dim=0
+                ).item(),
+                f"Cosine_Sim_Diff_{feature_type_k}": F.cosine_similarity(
+                    weight_vectors["sae_diff"], combined_weight, dim=0
+                ).item(),
+            }
+            
+            # Add these similarities to the combined result
+            temp_results[feature_type_k].update(k_similarities)
 
-        # Add similarities to all results
-        for ft in ["sae_input", "sae_diff", "sae_acts_and_error"]:
-            temp_results[ft].update(similarities)
+        # Add standard similarities to all results
+        for ft in temp_results.keys():
+            # Skip sae_acts_post as it has different dimensions
+            if ft != "sae_acts_post":
+                if "sae_acts_and_error" not in ft:  # For base probes
+                    # Add cross-k similarities for base probes (input and diff)
+                    for k in k_values:
+                        feature_type_k = f"sae_acts_and_error_k{k}"
+                        if feature_type_k in weight_vectors:
+                            temp_results[ft][f"Cosine_Sim_{ft}_{feature_type_k}"] = F.cosine_similarity(
+                                weight_vectors[ft], weight_vectors[feature_type_k], dim=0
+                            ).item()
 
         # Append the temporary results for this seed
         for result in temp_results.values():
@@ -554,37 +582,23 @@ def run_probing_pipeline(
 
     # Save aggregated results
     results_df = pd.DataFrame(results)
-    print(f"{result_suffix} finished training {n_seeds} probes.")
-    print("Average Test Loss")
-    print(results_df.groupby("Feature_Type")["Test_Loss"].mean())
-    print("Average Test Accuracy")
-    print(results_df.groupby("Feature_Type")["Test_Accuracy"].mean())
+    print(f"{result_suffix} finished training {n_seeds} probes with k values: {k_values}")
+    
     print("Average Test ROC AUC")
-    print(results_df.groupby("Feature_Type")["Test_ROC_AUC"].mean())
-
-    better_auc = np.mean(
-        results_df[results_df["Feature_Type"] == "sae_acts_and_error"][
-            "Test_ROC_AUC"
-        ].to_numpy()
-        > results_df[results_df["Feature_Type"] == "sae_input"][
-            "Test_ROC_AUC"
-        ].to_numpy()
-    )
-    print(f"Proportion of combined nodes with better ROC AUC: {better_auc:3f}")
-
-    better_accuracy = np.mean(
-        results_df[results_df["Feature_Type"] == "sae_acts_and_error"][
-            "Test_Accuracy"
-        ].to_numpy()
-        > results_df[results_df["Feature_Type"] == "sae_input"][
-            "Test_Accuracy"
-        ].to_numpy()
-    )
-    print(f"Proportion of combined nodes with better accuracy: {better_accuracy:3f}")
+    for feature_type in sorted(results_df["Feature_Type"].unique()):
+        avg_roc = results_df[results_df["Feature_Type"] == feature_type]["Test_ROC_AUC"].mean()
+        print(f"{feature_type}: {avg_roc:.4f}")
+    
+    # Compare k values to sae_input
+    for k in k_values:
+        feature_type_k = f"sae_acts_and_error_k{k}"
+        better_auc = np.mean(
+            results_df[results_df["Feature_Type"] == feature_type_k]["Test_ROC_AUC"].to_numpy()
+            > results_df[results_df["Feature_Type"] == "sae_input"]["Test_ROC_AUC"].to_numpy()
+        )
+        print(f"Proportion of k={k} probes with better ROC AUC than input: {better_auc:.4f}")
 
     results_df.to_csv(results_csv, index=False)
-
-    # Compute similarities and save plots if needed
     return results_df
 
 
@@ -669,12 +683,12 @@ def process_dataset(dataset, result_suffix, args, model, sae, project_root, devi
         + args.model.replace("-", "_").replace("/", "_")
         + "_"
         + args.sae_id.replace("/", "_").replace("-", "_")
-    )
+    ) + args.result_dir_suffix
     models_dir = project_root / "models" / model_sae_id
     results_dir = project_root / "data" / "processed" / model_sae_id
     plot_dir = project_root / "reports" / "figures" / model_sae_id
     
-    # Run probing pipeline
+    # Run probing pipeline with multiple k values
     _ = run_probing_pipeline(
         df=df,
         device=device,
@@ -684,7 +698,7 @@ def process_dataset(dataset, result_suffix, args, model, sae, project_root, devi
         results_dir=results_dir,
         plot_dir=plot_dir,
         sae=sae,
-        k=args.k,
+        k_values=args.k,  # Now passing a list of k values
         epochs=args.epochs,
         batch_size=args.batch_size,
         n_seeds=args.n_seeds,
@@ -693,7 +707,21 @@ def process_dataset(dataset, result_suffix, args, model, sae, project_root, devi
         l2_c=args.l2_regularization,
         result_suffix=result_suffix,
     )
-    for probe_type in ["sae_input", "sae_diff", "sae_acts_post", "sae_acts_and_error"]:
+    
+    # Process each probe type
+    for probe_type in ["sae_input", "sae_diff", "sae_acts_post"]:
+        save_probes_and_compute_similarities(
+            models_dir,
+            results_dir,
+            args.save_probes_count,
+            result_suffix,
+            probe_type,
+            plot_dir,
+        )
+    
+    # Process each combined probe with different k values
+    for k in args.k:
+        probe_type = f"sae_acts_and_error_k{k}"
         save_probes_and_compute_similarities(
             models_dir,
             results_dir,
@@ -772,8 +800,9 @@ def parse_args():
     parser.add_argument(
         "--k",
         type=int,
-        default=100,
-        help="Number of top activations to use for combined features",
+        nargs="+",
+        default=[25, 50, 150, 300],  # Changed to a list of default values
+        help="List of k values for top activations in combined features",
     )
     parser.add_argument(
         "--l1_regularization",
@@ -784,7 +813,7 @@ def parse_args():
     parser.add_argument(
         "--l2_regularization",
         type=float,
-        default=0.1,
+        default=0.01,
         help="L2 regularization strength for other probes",
     )
 
@@ -800,6 +829,13 @@ def parse_args():
         nargs="+",
         default="twt_happy",
         help="Suffix for result files (e.g., 'truth', 'hl_frontp')",
+    )
+
+    parser.add_argument(
+        "--result_dir_suffix",
+        type=str,
+        default="",
+        help="Suffix for result directory",
     )
 
     # Compute resources

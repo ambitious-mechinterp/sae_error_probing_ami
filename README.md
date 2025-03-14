@@ -16,5 +16,7 @@ And also from this paper: https://arxiv.org/pdf/2502.16681
 The last probing experiment I ran. Didn't really work so now we're gonna give up. 
 
 ```bash
-python sae_error_probing_ami/logistic_regression_probe.py  --dataset 114_nyc_borough_Manhattan.csv  149_twt_emotion_happiness.csv --result_suffix man_borough twt_happy --n_seeds 100
+python sae_error_probing_ami/logistic_regression_probe.py  --dataset 26_headline_isfrontpage.csv  114_nyc_borough_Manhattan.csv  149_twt_emotion_happiness.csv --result_suffix headline_fp man_borough twt_happy --n_seeds 100
 ```
+
+python sae_error_probing_ami/logistic_regression_probe.py  --dataset  --result_suffix 

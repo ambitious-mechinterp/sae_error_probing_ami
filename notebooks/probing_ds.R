@@ -50,9 +50,10 @@ probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
   
   
   probe_summary %<>% mutate(graph_labels = c(
-    "SAE Error",
-    "Residual", 
-    "SAE Reconstruction"))
+    "SAE Error + Latents",
+    "SAE Latents",
+    "SAE Error", 
+    "Residual"))
   
   
   ggplot(probe_summary, aes(x = graph_labels, 
@@ -138,7 +139,46 @@ probe_summarizer <- function(probe_name, some_probes, save_fig = TRUE){
 #Read in logistic regression results
 
 
+headline_probes <- read_csv("data/processed/logistic_combined_gemma_2_2b_layer_19_width_16k_canonical_k100_again/probe_results_headline_fp.csv")
+headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes, save_fig = FALSE)
 
+headline_probes %>% group_by(Feature_Type) %>% skim()
+
+manhattan_probes <- read_csv("data/processed/logistic_combined_gemma_2_2b_layer_19_width_16k_canonical_k100/probe_results_man_borough.csv")
+manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes, save_fig = FALSE)
+
+manhattan_probes %>% group_by(Feature_Type) %>% skim()
+
+tw_happy <- read_csv("data/processed/logistic_combined_gemma_2_2b_layer_19_width_16k_canonical_k100/probe_results_twt_happy.csv")
+tw_happy_summary <- probe_summarizer('Probing for Happiness in Tweets', tw_happy, save_fig = FALSE)
+
+tw_happy %>% select(-starts_with("Cosine")) %>%group_by(Feature_Type) %>% skim()
+
+combined_plot <- headline_summary %>% mutate(Dataset = "Frontpage headlines") %>%
+  add_row(manhattan_summary %>% mutate(Dataset = "Location in Manhattan")) %>%
+  add_row(tw_happy_summary %>% mutate(Dataset = "Happiness in Tweet"))
+
+ggplot(combined_plot, aes(x = graph_labels, 
+                          y = mean_test_ROC,
+                          color = Feature_Type,
+                          shape = Feature_Type)) +  # Add color aesthetic
+  geom_point() + 
+  myTheme + 
+  labs(y = 'Probe Out of Sample ROC AUC', 
+       x = NULL,
+       title = "Out of sample ROC AUC with logistic regression",
+       subtitle = "Results on gemma 2b. Error bars indicate randomness from using different seeds",
+       color = "Probe Location", shape = "Probe Location") + 
+  geom_errorbar(aes(ymin = mean_test_ROC - 1.96*se_test_ROC, 
+                    ymax = mean_test_ROC + 1.96*se_test_ROC),
+                width = 0.1) +
+  scale_y_continuous() + 
+  facet_wrap(~Dataset, scales = 'free') +
+  theme(axis.text.x = element_blank(),  # Remove x-axis text
+        axis.ticks.x = element_blank(),
+        legend.position = 'bottom') +  # Remove x-axis ticks
+  scale_color_manual(values = c(nicepurp, niceblue, nicegreen,"#F39C12"))
+ggsave("reports/figures/k100v1.png", width = 6, height = 4, scale = 1.6, dpi = 400)
 
 
 manhattan_probes <- read_csv('results/logistic_gemma_2_2b_layer_19_width_16k_canonical/probe_results_man_borough.csv')
@@ -255,13 +295,17 @@ df_sum <- probe_summarizer('Llama 3.1 Athelete Plays Basketball Probe',df)
 truth_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_truth.csv')
 truth_summary <- probe_summarizer('Probing for Truth in Cities Dataset', truth_probes)
 
-headline_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_headline_fp.csv')
+headline_probes_old <- read_csv('data/processed/logistic_combined_gemma_2_2b_layer_19_width_16k_canonical_old/probe_results_headline_fp.csv')
+headline_probes_old %>% group_by(Feature_Type) %>% skim()
+
 headline_summary <- probe_summarizer('Probing for Headline (Front Page)', headline_probes)
 
 manhattan_probes <- read_csv('results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_man_borough.csv')
 manhattan_summary <- probe_summarizer('Probing for in Manhattan', manhattan_probes)
 
-tw_happy <- read_csv("results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_twt_happy.csv")
+tw_happy <- read_csv("data/processed/logistic_combined_gemma_2_2b_layer_19_width_16k_canonical/probe_results_twt_happy.csv")
+tw_happy %>% group_by(Feature_Type) %>% skim()
+
 tw_happy_summary <- probe_summarizer('Probing for Happiness in Tweets', tw_happy)
 
 basketball <- read_csv("results/meta_llama_Llama_3.1_8B_l19r_8x/probe_results_ath_basketball.csv")
